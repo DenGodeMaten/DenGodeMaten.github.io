@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Søkefelt for Ingredienser og Oppskrifter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Lys bakgrunn for kontrast */
+            display: flex;
+            flex-direction: column; /* Standard for små skjermer (kolonne) */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Full viewport høyde */
+            margin: 0;
+            padding: 20px; /* Litt polstring rundt innholdet */
+            box-sizing: border-box; /* Inkluderer polstring i elementets totale bredde/høyde */
+        }
+
+        /* For større skjermer, legg elementene side ved side */
+        @media (min-width: 1024px) { /* Tailwind's 'lg' breakpoint */
+            body {
+                flex-direction: row; /* Side ved side for store skjermer */
+                align-items: flex-start; /* Juster til toppen */
+                justify-content: center; /* Sentrer innholdet horisontalt */
+            }
+        }
+
+        /* Stil for klikkbare listeelementer i søkeresultatene */
+        #resultsList li {
+            cursor: pointer; /* Indikerer at elementet er klikkbart */
+            padding: 4px 0; /* Litt vertikal polstring */
+            transition: background-color 0.2s ease-in-out; /* Jevn overgang ved hover */
+        }
+        #resultsList li:hover {
+            background-color: #e2e8f0; /* Lys bakgrunn ved hover */
+            border-radius: 4px; /* Litt avrundede hjørner ved hover */
+        }
+
+        /* Stil for klikkbare listeelementer i den valgte listen */
+        #selectedIngredientsList li {
+            cursor: pointer; /* Indikerer at elementet er klikkbart */
+            padding: 4px 8px; /* Litt polstring */
+            margin-bottom: 4px; /* Litt avstand mellom elementene */
+            background-color: #dbeafe; /* Lys blå bakgrunn */
+            border-radius: 6px; /* Avrundede hjørner */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+        }
+        #selectedIngredientsList li:hover {
+            background-color: #bfdbfe; /* Mørkere blå ved hover */
+            transform: translateX(2px); /* Liten bevegelse til høyre ved hover */
+        }
+        #selectedIngredientsList li .remove-btn {
+            color: #ef4444; /* Rød farge for fjern-knappen */
+            font-weight: bold;
+            margin-left: 8px;
+            cursor: pointer;
+            font-size: 1.2em;
+            line-height: 1; /* For å sentrere X-en vertikalt */
+        }
+        #selectedIngredientsList li .remove-btn:hover {
+            color: #dc2626; /* Mørkere rød ved hover */
+        }
+
+        /* Stil for oppskriftskort */
+        .recipe-card {
+            background-color: #f8fafc; /* Veldig lys bakgrunn */
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08); /* Liten skygge */
+            cursor: pointer; /* Indicate that the card is clickable */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .recipe-card:hover {
+            transform: translateY(-2px); /* Lift effect on hover */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.12); /* Stronger shadow on hover */
+        }
+        .recipe-card h3 {
+            font-weight: 600; /* Semibold */
+            color: #2d3748; /* Mørk grå */
+            margin-bottom: 4px;
+        }
+        .recipe-card a {
+            text-decoration: none; /* Remove underline from links */
+            color: inherit; /* Inherit color from parent */
+        }
+        .recipe-card p {
+            font-size: 0.9em;
+            color: #4a5568; /* Mellomgrå */
+        }
+        .recipe-card .missing-ingredients {
+            color: #e53e3e; /* Rød for manglende ingredienser */
+            font-weight: 500;
+        }
+        .recipe-card .matched-ingredients {
+            color: #38a169; /* Grønn for matchende ingredienser */
+            font-weight: 500;
+        }
+
+        /* Stil for filterknapper */
+        .filter-button {
+            background-color: #e5e7eb; /* bg-gray-200 */
+            color: #374151; /* text-gray-700 */
+            font-weight: 600; /* font-semibold */
+            padding-top: 0.5rem; /* py-2 */
+            padding-bottom: 0.5rem;
+            padding-left: 1rem; /* px-4 */
+            padding-right: 1rem;
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); /* shadow-sm */
+            transition: background-color 0.2s, box-shadow 0.2s, color 0.2s;
+            outline: none;
+        }
+        .filter-button:hover {
+            background-color: #d1d5db; /* hover:bg-gray-300 */
+        }
+        .filter-button:focus {
+            outline: 2px solid #3b82f6; /* focus:ring-2 focus:ring-blue-500 */
+            outline-offset: 2px;
+        }
+        .filter-button.active {
+            background-color: #2563eb; /* bg-blue-600 */
+            color: #fff; /* text-white */
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1); /* shadow-md */
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="w-full max-w-md p-4 bg-white rounded-xl shadow-lg flex flex-col items-center space-y-3 mb-6 lg:mb-0 lg:mr-6">
+        <div class="w-full flex items-center space-x-3">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Søk etter ingredienser..."
+                class="flex-grow px-4 py-2 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
+                aria-label="Søkefelt for ingredienser"
+            >
+            <button
+                id="searchButton"
+                class="flex-shrink-0 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75"
+                aria-label="Søkeknapp"
+            >
+                Søk
+            </button>
+        </div>
+
+        <div id="searchResults" class="w-full p-4 bg-gray-50 rounded-xl mt-4 hidden">
+            <h2 class="text-xl font-semibold text-gray-800 mb-3">Søkeresultater:</h2>
+            <ul id="resultsList" class="list-disc pl-5 text-gray-700">
+                </ul>
+            <p id="noResultsMessage" class="text-gray-500 italic hidden">Ingen ingredienser funnet.</p>
+        </div>
+    </div>
+
+    <div class="w-full max-w-md flex flex-col space-y-6">
+        <div id="selectedIngredientsContainer" class="p-4 bg-white rounded-xl shadow-lg">
+            <h2 class="text-xl font-semibold text-gray-800 mb-3">Valgte Ingredienser:</h2>
+            <ul id="selectedIngredientsList" class="text-gray-700">
+                </ul>
+            <p id="noSelectedIngredientsMessage" class="text-gray-500 italic">Ingen ingredienser valgt.</p>
+        </div>
+
+        <div id="suggestedRecipesContainer" class="p-4 bg-white rounded-xl shadow-lg">
+            <h2 class="text-xl font-semibold text-gray-800 mb-3">Foreslåtte Oppskrifter:</h2>
+            <div id="mealTypeFilters" class="flex flex-wrap gap-2 mb-4">
+                <button class="filter-button active" data-filter="alle">Alle</button>
+                <button class="filter-button" data-filter="middag">Middag</button>
+                <button class="filter-button" data-filter="frokost">Frokost</button>
+                <button class="filter-button" data-filter="dessert">Dessert</button>
+                <button class="filter-button" data-filter="kaker">Kaker</button>
+                <button class="filter-button" data-filter="suppe">Supper</button>
+            </div>
+            <div id="recipesList" class="text-gray-700">
+                </div>
+            <p id="noSuggestedRecipesMessage" class="text-gray-500 italic">Legg til ingredienser for å få oppskriftsforslag.</p>
+        </div>
+    </div>
+
+    <script>
+        // Få referanser til DOM-elementer
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        const searchResultsDiv = document.getElementById('searchResults');
+        const resultsList = document.getElementById('resultsList');
+        const noResultsMessage = document.getElementById('noResultsMessage');
+        const selectedIngredientsContainer = document.getElementById('selectedIngredientsContainer');
+        const selectedIngredientsList = document.getElementById('selectedIngredientsList');
+        const noSelectedIngredientsMessage = document.getElementById('noSelectedIngredientsMessage');
+        const suggestedRecipesContainer = document.getElementById('suggestedRecipesContainer');
+        const recipesList = document.getElementById('recipesList');
+        const noSuggestedRecipesMessage = document.getElementById('noSuggestedRecipesMessage');
+        const mealTypeFilters = document.getElementById('mealTypeFilters'); // Ny referanse til filtercontaineren
+
+        // Hardkodet liste over alle tilgjengelige ingredienser
+        const allIngredients = [
+            'melk', 'egg', 'sukker', 'mel', 'smør', 'salt', 'pepper', 'løk',
+            'hvitløk', 'tomat', 'potet', 'gulrot', 'brokkoli', 'kylling',
+            'biff', 'fiskefilet', 'ris', 'pasta', 'ost', 'fløte', 'sitron',
+            'persille', 'basilikum', 'olivenolje', 'eddik', 'honning', 'kanel',
+            'vanilje', 'bakepulver', 'gjær', 'sjokolade', 'eple', 'banan',
+            'jordbær', 'blåbær', 'agurk', 'paprika', 'champignon', 'spinat',
+            'kål', 'purre', 'ingefær', 'chili', 'koriander', 'timian', 'rosmarin',
+            'oregano', 'kjøttdeig', 'bacon', 'pølser', 'skinke', 'reker', 'laks',
+            'torsk', 'tunfisk', 'brød', 'tortilla', 'couscous', 'quinoa', 'linser',
+            'kikerter', 'fetakrem', 'rømme', 'creme fraiche', 'majones', 'ketchup',
+            'sennep', 'soyasaus', 'buljong', 'grønnsaksbuljong', 'kyllingbuljong',
+            'oksebuljong', 'tomatpuré', 'hermetiske tomater', 'kokosmelk', 'peanøttsmør',
+            'nøtter', 'mandler', 'valnøtter', 'frø', 'sesamfrø', 'gresskarkjerner',
+            'solrosfrø', 'tørket frukt', 'rosiner', 'dadler', 'aprikoser', 'frukt',
+            'appelsin', 'lime', 'avokado', 'druer', 'kiwi', 'pære', 'plomme', 'fersken',
+            'nektarin', 'melon', 'vannmelon', 'honningmelon', 'ananas', 'mango',
+            'papaya', 'pasjonsfrukt', 'kokosnøtt'
+        ];
+
+        // En mock-database med oppskrifter og deres ingredienser, nå med type
+        const recipes = [
+            {
+                name: "Kyllinggryte med ris",
+                ingredients: ["kylling", "ris", "løk", "paprika", "tomat", "buljong", "olivenolje", "salt", "pepper"],
+                url: "https://www.example.com/oppskrift/kyllinggryte",
+                type: "middag"
+            },
+            {
+                name: "Spaghetti Carbonara",
+                ingredients: ["pasta", "egg", "bacon", "ost", "pepper"],
+                url: "https://www.example.com/oppskrift/carbonara",
+                type: "middag"
+            },
+            {
+                name: "Fiskesuppe",
+                ingredients: ["fiskefilet", "gulrot", "purre", "fløte", "melk", "salt", "pepper", "persille"],
+                url: "https://www.example.com/oppskrift/fiskesuppe",
+                type: "suppe"
+            },
+            {
+                name: "Tomatsuppe med pasta",
+                ingredients: ["hermetiske tomater", "løk", "hvitløk", "pasta", "buljong", "olivenolje", "salt", "pepper", "basilikum"],
+                url: "https://www.example.com/oppskrift/tomatsuppe",
+                type: "suppe"
+            },
+            {
+                name: "Omelett med grønnsaker",
+                ingredients: ["egg", "melk", "champignon", "spinat", "ost", "salt", "pepper"],
+                url: "https://www.example.com/oppskrift/omelett",
+                type: "frokost"
+            },
+            {
+                name: "Enkel pannekaker",
+                ingredients: ["mel", "egg", "melk", "sukker", "smør", "salt"],
+                url: "https://www.example.com/oppskrift/pannekaker",
+                type: "frokost"
+            },
+            {
+                name: "Kjøttboller i tomatsaus",
+                ingredients: ["kjøttdeig", "løk", "hvitløk", "hermetiske tomater", "salt", "pepper", "pasta", "olivenolje"],
+                url: "https://www.example.com/oppskrift/kjottboller",
+                type: "middag"
+            },
+            {
+                name: "Grønnsakswok",
+                ingredients: ["brokkoli", "gulrot", "paprika", "løk", "kylling", "soyasaus", "ris", "ingefær", "hvitløk"],
+                url: "https://www.example.com/oppskrift/wok",
+                type: "middag"
+            },
+            {
+                name: "Sjokoladekake",
+                ingredients: ["mel", "sukker", "kakao", "egg", "melk", "smør", "bakepulver"],
+                url: "https://www.example.com/oppskrift/sjokoladekake",
+                type: "kaker"
+            },
+            {
+                name: "Eplekake",
+                ingredients: ["eple", "mel", "sukker", "smør", "kanel", "egg"],
+                url: "https://www.example.com/oppskrift/eplekake",
+                type: "kaker"
+            },
+            {
+                name: "Fruktsalat",
+                ingredients: ["eple", "banan", "jordbær", "blåbær", "appelsin", "kiwi"],
+                url: "https://www.example.com/oppskrift/fruktsalat",
+                type: "dessert"
+            },
+            {
+                name: "Bær med krem",
+                ingredients: ["jordbær", "blåbær", "fløte", "sukker"],
+                url: "https://www.example.com/oppskrift/baer-krem",
+                type: "dessert"
+            }
+        ];
+
+        // Array for å holde de valgte ingrediensene
+        let selectedIngredients = [];
+        // Variabel for å holde den aktive måltidstypen filteret
+        let currentMealTypeFilter = 'alle'; // Standard: vis alle
+
+        // Funksjon for å oppdatere visningen av valgte ingredienser
+        function renderSelectedIngredients() {
+            selectedIngredientsList.innerHTML = ''; // Tøm listen
+            if (selectedIngredients.length === 0) {
+                noSelectedIngredientsMessage.classList.remove('hidden'); // Vis melding om ingen valgte
+            } else {
+                noSelectedIngredientsMessage.classList.add('hidden'); // Skjul meldingen
+                selectedIngredients.forEach(ingredient => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = ingredient.charAt(0).toUpperCase() + ingredient.slice(1); // Kapitaliser første bokstav
+                    listItem.classList.add('flex', 'items-center', 'justify-between'); // Tailwind for flex layout
+
+                    // Legg til en "fjern"-knapp
+                    const removeButton = document.createElement('span');
+                    removeButton.textContent = 'X';
+                    removeButton.classList.add('remove-btn');
+                    removeButton.title = `Fjern ${ingredient}`; // Tilgjengelighet
+                    removeButton.addEventListener('click', (event) => {
+                        event.stopPropagation(); // Forhindre at klikket bobler opp til listItem
+                        removeIngredientFromSelectedList(ingredient);
+                    });
+
+                    listItem.appendChild(removeButton);
+                    selectedIngredientsList.appendChild(listItem);
+                });
+            }
+            suggestRecipes(); // Kall for å oppdatere oppskriftsforslagene når ingrediensene endres
+        }
+
+        // Funksjon for å legge til en ingrediens i den valgte listen
+        function addIngredientToSelectedList(ingredient) {
+            // Sjekk om ingrediensen allerede er i listen for å unngå duplikater
+            if (!selectedIngredients.includes(ingredient)) {
+                selectedIngredients.push(ingredient);
+                renderSelectedIngredients(); // Oppdater visningen
+                console.log(`Lagt til i valgt liste: ${ingredient}`);
+            } else {
+                console.log(`${ingredient} er allerede i den valgte listen.`);
+            }
+        }
+
+        // Funksjon for å fjerne en ingrediens fra den valgte listen
+        function removeIngredientFromSelectedList(ingredientToRemove) {
+            selectedIngredients = selectedIngredients.filter(ingredient => ingredient !== ingredientToRemove);
+            renderSelectedIngredients(); // Oppdater visningen
+            console.log(`Fjernet fra valgt liste: ${ingredientToRemove}`);
+        }
+
+        // Funksjon for å håndtere søkeaksjonen
+        function performSearch() {
+            const query = searchInput.value.trim().toLowerCase(); // Hent og formater søket
+            resultsList.innerHTML = ''; // Tøm tidligere resultater
+            noResultsMessage.classList.add('hidden'); // Skjul "ingen resultater"-meldingen
+            searchResultsDiv.classList.add('hidden'); // Skjul resultatcontaineren som standard
+
+            if (query) {
+                // Filtrer ingredienslisten basert på søket
+                const filteredIngredients = allIngredients.filter(ingredient =>
+                    ingredient.includes(query)
+                );
+
+                if (filteredIngredients.length > 0) {
+                    // Vis resultatcontaineren
+                    searchResultsDiv.classList.remove('hidden');
+                    // Legg til matchende ingredienser i listen
+                    filteredIngredients.forEach(ingredient => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = ingredient.charAt(0).toUpperCase() + ingredient.slice(1); // Kapitaliser første bokstav
+                        listItem.classList.add('ingredient-item'); // Legg til klasse for styling
+                        listItem.addEventListener('click', () => {
+                            addIngredientToSelectedList(ingredient); // Legg til i valgt liste ved klikk
+                        });
+                        resultsList.appendChild(listItem);
+                    });
+                } else {
+                    // Vis "ingen resultater"-meldingen
+                    searchResultsDiv.classList.remove('hidden');
+                    noResultsMessage.classList.remove('hidden');
+                }
+            } else {
+                console.log('Søkefeltet er tomt.');
+            }
+        }
+
+        // Funksjon for å foreslå oppskrifter basert på valgte ingredienser og filter
+        function suggestRecipes() {
+            recipesList.innerHTML = ''; // Tøm tidligere oppskrifter
+            noSuggestedRecipesMessage.classList.add('hidden'); // Skjul melding om ingen forslag
+
+            if (selectedIngredients.length === 0 && currentMealTypeFilter === 'alle') {
+                noSuggestedRecipesMessage.classList.remove('hidden'); // Vis melding om ingen valgte ingredienser
+                return;
+            }
+
+            let filteredRecipesByType = recipes;
+            if (currentMealTypeFilter !== 'alle') {
+                filteredRecipesByType = recipes.filter(recipe => recipe.type === currentMealTypeFilter);
+            }
+
+            let matchingRecipes = [];
+
+            filteredRecipesByType.forEach(recipe => {
+                let matchedCount = 0;
+                let missingIngredients = [];
+
+                recipe.ingredients.forEach(requiredIngredient => {
+                    if (selectedIngredients.includes(requiredIngredient)) {
+                        matchedCount++;
+                    } else {
+                        missingIngredients.push(requiredIngredient);
+                    }
+                });
+
+                // Legg til oppskriften hvis den har minst én matchende ingrediens
+                // Eller hvis ingen ingredienser er valgt, men et filter er aktivt
+                if (matchedCount > 0 || selectedIngredients.length === 0) {
+                    matchingRecipes.push({
+                        name: recipe.name,
+                        matched: matchedCount,
+                        total: recipe.ingredients.length,
+                        missing: missingIngredients,
+                        url: recipe.url,
+                        type: recipe.type
+                    });
+                }
+            });
+
+            // Sorter oppskriftene etter antall matchende ingredienser (flest først)
+            matchingRecipes.sort((a, b) => b.matched - a.matched);
+
+            if (matchingRecipes.length > 0) {
+                matchingRecipes.forEach(recipe => {
+                    const recipeCard = document.createElement('div');
+                    recipeCard.classList.add('recipe-card');
+
+                    // Lag en lenke for oppskriftsnavnet
+                    const recipeLink = document.createElement('a');
+                    recipeLink.href = recipe.url;
+                    recipeLink.target = "_blank"; // Åpne i ny fane
+                    recipeLink.rel = "noopener noreferrer"; // Sikkerhet for _blank
+
+                    const recipeName = document.createElement('h3');
+                    recipeName.textContent = recipe.name;
+                    recipeLink.appendChild(recipeName); // Legg navnet inn i lenken
+                    recipeCard.appendChild(recipeLink); // Legg lenken til kortet
+
+                    const matchedInfo = document.createElement('p');
+                    matchedInfo.classList.add('matched-ingredients');
+                    matchedInfo.textContent = `Du har ${recipe.matched} av ${recipe.total} ingredienser.`;
+                    recipeCard.appendChild(matchedInfo);
+
+                    if (recipe.missing.length > 0) {
+                        const missingInfo = document.createElement('p');
+                        missingInfo.classList.add('missing-ingredients');
+                        missingInfo.textContent = `Mangler: ${recipe.missing.map(i => i.charAt(0).toUpperCase() + i.slice(1)).join(', ')}`;
+                        recipeCard.appendChild(missingInfo);
+                    }
+
+                    recipesList.appendChild(recipeCard);
+                });
+            } else {
+                noSuggestedRecipesMessage.classList.remove('hidden');
+                noSuggestedRecipesMessage.textContent = "Ingen oppskrifter funnet med de valgte ingrediensene og filteret.";
+            }
+        }
+
+        // Legg til event listeners for filterknappene
+        mealTypeFilters.querySelectorAll('.filter-button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Fjern 'active' klasse fra alle knapper
+                mealTypeFilters.querySelectorAll('.filter-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                // Legg til 'active' klasse til den klikkede knappen
+                button.classList.add('active');
+                currentMealTypeFilter = button.dataset.filter; // Oppdater filteret
+                suggestRecipes(); // Oppdater oppskrifter
+            });
+        });
+
+
+        // Legg til hendelseslytter for klikk på søkeknappen
+        searchButton.addEventListener('click', performSearch);
+
+        // Legg til hendelseslytter for 'Enter'-tastetrykk i input-feltet
+        searchInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Forhindre standard skjema-innsending
+                performSearch(); // Utfør søket
+            }
+        });
+
+        // Initialiser den valgte ingredienslisten og oppskriftsforslagene ved lasting av siden
+        renderSelectedIngredients();
+    </script>
+</body>
+</html>
