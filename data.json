@@ -16,25 +16,27 @@
     "solrosfrø", "tørket frukt", "rosiner", "dadler", "aprikoser", "frukt",
     "appelsin", "lime", "avokado", "druer", "kiwi", "pære", "plomme", "fersken",
     "nektarin", "melon", "vannmelon", "honningmelon", "ananas", "mango",
-    "papaya", "pasjonsfrukt", "kokosnøtt"
+    "papaya", "pasjonsfrukt", "kokosnøtt", "chorizo", "stangselleri", "kajennepepper", 
+    "paprikakrydder", "hvitløkskrydder", "kremfløte", "parmesan", "spagetti","hvitvin", 
+    "fisk", "laks", "torsk", "fennikel", "fiskekraft", "kjøttkraft", "gressløk"
   ],
   "recipes": [
     {
-      "name": "Kyllinggryte med ris",
-      "ingredients": ["kylling", "ris", "løk", "paprika", "tomat", "buljong", "olivenolje", "salt", "pepper"],
-      "url": "https://www.example.com/oppskrift/kyllinggryte",
+      "name": "Kyllinggryte med ris - (Det Glade Kjøkken)",
+      "ingredients": ["kylling", "olivenolje", "ris", "chorizo", "paprika", "løk", "stangselleri", "hvitløk", "tomat", "tomatpuré", "kyllingbuljong", "salt", "pepper", "sitron", "persille", "paprikakrydder", "hvitløkskrydder", "kajennepepper"],
+      "url": "https://detgladekjokken.no/oppskrift/spansk-kylling-med-ris/",
       "type": "middag"
     },
     {
-      "name": "Spaghetti Carbonara",
-      "ingredients": ["pasta", "egg", "bacon", "ost", "pepper"],
-      "url": "https://www.example.com/oppskrift/carbonara",
+      "name": "Spaghetti Carbonara - (Trines Matblogg)",
+      "ingredients": ["løk", "bacon", "egg", "fløte", "parmesan", "salt", "pepper", "persille", "spagetti"],
+      "url": "https://trinesmatblogg.no/recipe/spaghetti-carbonara/", 
       "type": "middag"
     },
     {
-      "name": "Fiskesuppe",
-      "ingredients": ["fiskefilet", "gulrot", "purre", "fløte", "melk", "salt", "pepper", "persille"],
-      "url": "https://www.example.com/oppskrift/fiskesuppe",
+      "name": "Fiskesuppe - (Trines Matblogg)",
+      "ingredients": ["løk","hvitvin", "fløte", "smør", "fiske", "reker", "gulrot", "fennikel", "purre", "stangselleri", "fiskekraft", "basilikum", "gressløk", "persille", "salt", "pepper"],
+      "url": "https://trinesmatblogg.no/recipe/verdens-beste-fiskesuppe-versjon-2-0/",
       "type": "suppe"
     },
     {
