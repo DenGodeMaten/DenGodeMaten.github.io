@@ -18,7 +18,7 @@
     "nektarin", "melon", "vannmelon", "honningmelon", "ananas", "mango",
     "papaya", "pasjonsfrukt", "kokosnøtt", "chorizo", "stangselleri", "kajennepepper", 
     "paprikakrydder", "hvitløkskrydder", "kremfløte", "parmesan", "spagetti","hvitvin", 
-    "fisk", "laks", "torsk", "fennikel", "fiskekraft", "kjøttkraft", "gressløk"
+    "fisk", "laks", "torsk", "fennikel", "fiskekraft", "kjøttkraft", "gressløk", "squash"
   ],
   "recipes": [
     {
@@ -40,15 +40,15 @@
       "type": "suppe"
     },
     {
-      "name": "Tomatsuppe med pasta",
-      "ingredients": ["hermetiske tomater", "løk", "hvitløk", "pasta", "buljong", "olivenolje", "salt", "pepper", "basilikum"],
-      "url": "https://www.example.com/oppskrift/tomatsuppe",
+      "name": "Tomatsuppe med pasta - (Trines Matblogg)",
+      "ingredients": ["løk", "hvitløk", "tomatpuré", "hermetiske tomater", "melk", "fløte", "buljong", "sukker", "oregano", "salt", "pepper", "pasta", "basilikum", "chili", "olivenolje", "brød"],
+      "url": "https://trinesmatblogg.no/recipe/tomatsuppe-med-pasta/",
       "type": "suppe"
     },
     {
-      "name": "Omelett med grønnsaker",
-      "ingredients": ["egg", "melk", "champignon", "spinat", "ost", "salt", "pepper"],
-      "url": "https://www.example.com/oppskrift/omelett",
+      "name": "Omelett med grønnsaker - (Frukt.no)",
+      "ingredients": ["løk", "potet", "kål", "squash", "brokkoli", "egg", "tomat", "skinke", "ost", "gressløk", "persille", "salt", "pepper"],
+      "url": "https://www.frukt.no/oppskrifter/omelett-med-gronnsaker/",
       "type": "frokost"
     },
     {
@@ -58,9 +58,9 @@
       "type": "frokost"
     },
     {
-      "name": "Kjøttboller i tomatsaus",
-      "ingredients": ["kjøttdeig", "løk", "hvitløk", "hermetiske tomater", "salt", "pepper", "pasta", "olivenolje"],
-      "url": "https://www.example.com/oppskrift/kjottboller",
+      "name": "Kjøttboller i tomatsaus - (Det Glade Kjøkken)",
+      "ingredients": ["kjøttdeig", "hvitløk", "løk", "chili", "egg", "salt", "pepper", "paprika", "hermetiske tomater", "buljong", "oregano", "sukker" ],
+      "url": "https://detgladekjokken.no/oppskrift/kjottboller-i-tomatsaus/#wpzoom-premium-recipe-card",
       "type": "middag"
     },
     {
