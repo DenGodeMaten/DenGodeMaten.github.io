@@ -1,0 +1,95 @@
+{
+  "ingredients": [
+    "melk", "egg", "sukker", "mel", "smør", "salt", "pepper", "løk",
+    "hvitløk", "tomat", "potet", "gulrot", "brokkoli", "kylling",
+    "biff", "fiskefilet", "ris", "pasta", "ost", "fløte", "sitron",
+    "persille", "basilikum", "olivenolje", "eddik", "honning", "kanel",
+    "vanilje", "bakepulver", "gjær", "sjokolade", "eple", "banan",
+    "jordbær", "blåbær", "agurk", "paprika", "champignon", "spinat",
+    "kål", "purre", "ingefær", "chili", "koriander", "timian", "rosmarin",
+    "oregano", "kjøttdeig", "bacon", "pølser", "skinke", "reker", "laks",
+    "torsk", "tunfisk", "brød", "tortilla", "couscous", "quinoa", "linser",
+    "kikerter", "fetakrem", "rømme", "creme fraiche", "majones", "ketchup",
+    "sennep", "soyasaus", "buljong", "grønnsaksbuljong", "kyllingbuljong",
+    "oksebuljong", "tomatpuré", "hermetiske tomater", "kokosmelk", "peanøttsmør",
+    "nøtter", "mandler", "valnøtter", "frø", "sesamfrø", "gresskarkjerner",
+    "solrosfrø", "tørket frukt", "rosiner", "dadler", "aprikoser", "frukt",
+    "appelsin", "lime", "avokado", "druer", "kiwi", "pære", "plomme", "fersken",
+    "nektarin", "melon", "vannmelon", "honningmelon", "ananas", "mango",
+    "papaya", "pasjonsfrukt", "kokosnøtt"
+  ],
+  "recipes": [
+    {
+      "name": "Kyllinggryte med ris",
+      "ingredients": ["kylling", "ris", "løk", "paprika", "tomat", "buljong", "olivenolje", "salt", "pepper"],
+      "url": "https://www.example.com/oppskrift/kyllinggryte",
+      "type": "middag"
+    },
+    {
+      "name": "Spaghetti Carbonara",
+      "ingredients": ["pasta", "egg", "bacon", "ost", "pepper"],
+      "url": "https://www.example.com/oppskrift/carbonara",
+      "type": "middag"
+    },
+    {
+      "name": "Fiskesuppe",
+      "ingredients": ["fiskefilet", "gulrot", "purre", "fløte", "melk", "salt", "pepper", "persille"],
+      "url": "https://www.example.com/oppskrift/fiskesuppe",
+      "type": "suppe"
+    },
+    {
+      "name": "Tomatsuppe med pasta",
+      "ingredients": ["hermetiske tomater", "løk", "hvitløk", "pasta", "buljong", "olivenolje", "salt", "pepper", "basilikum"],
+      "url": "https://www.example.com/oppskrift/tomatsuppe",
+      "type": "suppe"
+    },
+    {
+      "name": "Omelett med grønnsaker",
+      "ingredients": ["egg", "melk", "champignon", "spinat", "ost", "salt", "pepper"],
+      "url": "https://www.example.com/oppskrift/omelett",
+      "type": "frokost"
+    },
+    {
+      "name": "Enkel pannekaker",
+      "ingredients": ["mel", "egg", "melk", "sukker", "smør", "salt"],
+      "url": "https://www.example.com/oppskrift/pannekaker",
+      "type": "frokost"
+    },
+    {
+      "name": "Kjøttboller i tomatsaus",
+      "ingredients": ["kjøttdeig", "løk", "hvitløk", "hermetiske tomater", "salt", "pepper", "pasta", "olivenolje"],
+      "url": "https://www.example.com/oppskrift/kjottboller",
+      "type": "middag"
+    },
+    {
+      "name": "Grønnsakswok",
+      "ingredients": ["brokkoli", "gulrot", "paprika", "løk", "kylling", "soyasaus", "ris", "ingefær", "hvitløk"],
+      "url": "https://www.example.com/oppskrift/wok",
+      "type": "middag"
+    },
+    {
+      "name": "Sjokoladekake",
+      "ingredients": ["mel", "sukker", "kakao", "egg", "melk", "smør", "bakepulver"],
+      "url": "https://www.example.com/oppskrift/sjokoladekake",
+      "type": "kaker"
+    },
+    {
+      "name": "Eplekake",
+      "ingredients": ["eple", "mel", "sukker", "smør", "kanel", "egg"],
+      "url": "https://www.example.com/oppskrift/eplekake",
+      "type": "kaker"
+    },
+    {
+      "name": "Fruktsalat",
+      "ingredients": ["eple", "banan", "jordbær", "blåbær", "appelsin", "kiwi"],
+      "url": "https://www.example.com/oppskrift/fruktsalat",
+      "type": "dessert"
+    },
+    {
+      "name": "Bær med krem",
+      "ingredients": ["jordbær", "blåbær", "fløte", "sukker"],
+      "url": "https://www.example.com/oppskrift/baer-krem",
+      "type": "dessert"
+    }
+  ]
+}
