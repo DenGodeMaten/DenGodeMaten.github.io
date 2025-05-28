@@ -13,7 +13,7 @@
             background-color: #f0f4f8; /* Light background for contrast */
             display: flex;
             flex-direction: column; /* Default to column for small screens */
-            justify-content: center;
+            justify-content: flex-start; /* Align items to the start, allow auto margins to push */
             align-items: center;
             min-height: 100vh; /* Full viewport height */
             margin: 0;
@@ -28,6 +28,7 @@
                 flex-direction: row; /* Side by side for large screens */
                 align-items: flex-start; /* Align to the top */
                 justify-content: center; /* Center content horizontally */
+                padding-left: 120px; /* Make space for the logo on the left */
             }
         }
 
@@ -133,23 +134,22 @@
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1); /* shadow-md */
         }
 
-        /* Style for the logo */
+        /* Style for the logo - Adjusted for responsive positioning */
         .logo {
-            position: absolute;
-            top: 20px; /* Adjust as needed for spacing from the top */
-            left: 20px; /* Adjust as needed for spacing from the left */
-            width: 80px; /* Set a fixed width for the logo */
+            width: 100px; /* Set a fixed width for the logo */
             height: auto; /* Maintain aspect ratio */
-            z-index: 10; /* Ensure the logo is above other content */
             border-radius: 8px; /* Slightly rounded corners for the logo */
             box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Small shadow for the logo */
+            margin-bottom: 20px; /* Add margin for spacing on small screens */
         }
 
-        /* Adjust body padding for larger screens to prevent content overlap with logo */
         @media (min-width: 1024px) {
-            body {
-                padding-left: 120px; /* Make space for the logo on the left */
-                align-items: flex-start; /* Align to the top */
+            .logo {
+                position: fixed; /* Fix position for large screens */
+                top: 20px; /* Distance from top */
+                left: 20px; /* Distance from left */
+                margin-bottom: 0; /* Remove margin on large screens */
+                z-index: 10; /* Ensure logo is on top of other content */
             }
         }
     </style>
