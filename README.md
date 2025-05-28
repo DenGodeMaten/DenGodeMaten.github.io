@@ -1,1 +1,3 @@
-[https://www.tiktok.com/@degodesmat](https://www.tiktok.com/@degodesmat)
+En nettside for DeGodesMat EB. 
+
+Følg [@DeGodesMat](https://www.tiktok.com/@degodesmat) på TikTok!
