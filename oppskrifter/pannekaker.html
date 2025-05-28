@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathjelper av velging av oppskrifter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the body to ensure full height and responsive layout */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light background for contrast */
+            display: flex;
+            flex-direction: column; /* Default to column for small screens */
+            justify-content: flex-start; /* Align items to the start, allow auto margins to push */
+            align-items: center;
+            min-height: 100vh; /* Full viewport height */
+            margin: 0;
+            padding: 20px; /* Some padding around the content */
+            box-sizing: border-box; /* Include padding in the element's total width/height */
+            position: relative; /* Needed for absolute positioning of the logo */
+        }
+
+        /* For larger screens, arrange elements side by side */
+        @media (min-width: 1024px) { /* Tailwind's 'lg' breakpoint */
+            body {
+                flex-direction: row; /* Side by side for large screens */
+                align-items: flex-start; /* Align to the top */
+                justify-content: center; /* Center content horizontally */
+                padding-left: 120px; /* Make space for the logo on the left */
+            }
+        }
+
+        /* Style for the logo - Adjusted for responsive positioning */
+        .logo {
+            width: 100px; /* Set a fixed width for the logo */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 8px; /* Slightly rounded corners for the logo */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Small shadow for the logo */
+            margin-bottom: 20px; /* Add margin for spacing on small screens */
+        }
+
+        @media (min-width: 1024px) {
+            .logo {
+                position: fixed; /* Fix position for large screens */
+                top: 20px; /* Distance from top */
+                left: 20px; /* Distance from left */
+                margin-bottom: 0; /* Remove margin on large screens */
+                z-index: 10; /* Ensure logo is on top of other content */
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <a href="../">
+        <img src="../logo.png" alt="De Godes Mat Logo" class="logo">
+</a></body>

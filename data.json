@@ -36,7 +36,7 @@
     {
       "name": "Enkel pannekaker",
       "ingredients": ["mel", "egg", "melk", "sukker", "smør", "salt"],
-      "url": "https://www.example.com/oppskrift/pannekaker",
+      "url": "./oppskrifter/pannekaker",
       "type": "frokost"
     },
     {
