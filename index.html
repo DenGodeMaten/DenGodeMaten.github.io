@@ -152,10 +152,94 @@
                 z-index: 10; /* Ensure logo is on top of other content */
             }
         }
+
+        /* Loading indicator styles */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .loading-spinner {
+            border: 4px solid #f3f3f3; /* Light grey */
+            border-top: 4px solid #3b82f6; /* Blue */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease-in-out;
+        }
+        .modal-overlay.show .modal-content {
+            transform: translateY(0);
+        }
+        .modal-content h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .modal-content p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        .modal-content button {
+            background-color: #3b82f6;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .modal-content button:hover {
+            background-color: #2563eb;
+        }
     </style>
 </head>
 <body class="antialiased">
-    <img src="logo.png" alt="De Godes Mat Logo" class="logo">
+    <img src="./logo.png" alt="De Godes Mat Logo" class="logo">
 
     <div class="w-full max-w-md p-4 bg-white rounded-xl shadow-lg flex flex-col items-center space-y-3 mb-6 lg:mb-0 lg:mr-6">
         <div class="w-full flex items-center space-x-3">
@@ -185,7 +269,14 @@
 
     <div class="w-full max-w-md flex flex-col space-y-6">
         <div id="selectedIngredientsContainer" class="p-4 bg-white rounded-xl shadow-lg">
-            <h2 class="text-xl font-semibold text-gray-800 mb-3">Valgte Ingredienser:</h2>
+            <div class="flex justify-between items-center mb-3">
+                <h2 class="text-xl font-semibold text-gray-800">Valgte Ingredienser:</h2>
+                <button
+                    id="clearSelectedButton"
+                >
+                    <img src="./bin.jpg" alt="Fjern alle" class="h-8 w-8"
+                </button>
+            </div>
             <ul id="selectedIngredientsList" class="text-gray-700">
             </ul>
             <p id="noSelectedIngredientsMessage" class="text-gray-500 italic">Ingen ingredienser valgt.</p>
@@ -207,6 +298,18 @@
         </div>
     </div>
 
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div id="customModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3 id="modalTitle"></h3>
+            <p id="modalMessage"></p>
+            <button id="modalCloseButton">Lukk</button>
+        </div>
+    </div>
+
     <script>
         // Get references to DOM elements
         const searchInput = document.getElementById('searchInput');
@@ -214,13 +317,17 @@
         const searchResultsDiv = document.getElementById('searchResults');
         const resultsList = document.getElementById('resultsList');
         const noResultsMessage = document.getElementById('noResultsMessage');
-        const selectedIngredientsContainer = document.getElementById('selectedIngredientsContainer'); // Not directly used, but good to keep reference
         const selectedIngredientsList = document.getElementById('selectedIngredientsList');
         const noSelectedIngredientsMessage = document.getElementById('noSelectedIngredientsMessage');
-        const suggestedRecipesContainer = document.getElementById('suggestedRecipesContainer'); // Not directly used, but good to keep reference
         const recipesList = document.getElementById('recipesList');
         const noSuggestedRecipesMessage = document.getElementById('noSuggestedRecipesMessage');
         const mealTypeFilters = document.getElementById('mealTypeFilters');
+        const loadingOverlay = document.getElementById('loadingOverlay'); // Loading overlay element
+        const customModal = document.getElementById('customModal'); // Custom modal overlay
+        const modalTitle = document.getElementById('modalTitle'); // Modal title element
+        const modalMessage = document.getElementById('modalMessage'); // Modal message element
+        const modalCloseButton = document.getElementById('modalCloseButton'); // Modal close button
+        const clearSelectedButton = document.getElementById('clearSelectedButton'); // New: Clear all button
 
         // Global variables to hold data after loading
         let allIngredientsData = [];
@@ -230,6 +337,33 @@
         let selectedIngredients = [];
         // Variable to hold the active meal type filter
         let currentMealTypeFilter = 'alle'; // Default: show all
+
+        /**
+         * Displays the custom modal with a given title and message.
+         * @param {string} title - The title of the modal.
+         * @param {string} message - The message content of the modal.
+         */
+        function showModal(title, message) {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            customModal.classList.add('show'); // Add 'show' class to make it visible
+            customModal.classList.remove('hidden'); // Ensure it's not hidden by Tailwind
+        }
+
+        /**
+         * Hides the custom modal.
+         */
+        function hideModal() {
+            customModal.classList.remove('show'); // Remove 'show' class to hide it
+            // Add 'hidden' class after a short delay to allow transition to complete
+            setTimeout(() => {
+                customModal.classList.add('hidden');
+            }, 300); // Match CSS transition duration
+        }
+
+        // Event listener for the modal close button
+        modalCloseButton.addEventListener('click', hideModal);
+
 
         /**
          * Renders the list of selected ingredients in the UI.
@@ -289,6 +423,15 @@
             selectedIngredients = selectedIngredients.filter(ingredient => ingredient !== ingredientToRemove);
             renderSelectedIngredients(); // Update the display
             console.log(`Removed from selected list: ${ingredientToRemove}`);
+        }
+
+        /**
+         * Clears all ingredients from the selected ingredients list.
+         */
+        function clearSelectedIngredients() {
+            selectedIngredients = []; // Empty the array
+            renderSelectedIngredients(); // Re-render to update the UI
+            console.log('All selected ingredients cleared.');
         }
 
         /**
@@ -459,8 +602,14 @@
                 performSearch(); // Perform the search
             }
         });
-        
+
+        // New: Add event listener for the "Clear All" button
+        clearSelectedButton.addEventListener('click', clearSelectedIngredients);
+
+
         // Fetch data from data.json when the page loads
+        // Show loading overlay before fetch
+        loadingOverlay.classList.remove('hidden');
         fetch('data.json')
             .then(response => {
                 if (!response.ok) {
@@ -477,9 +626,14 @@
             })
             .catch(error => {
                 console.error('Could not load data.json:', error);
-                // Display an error message to the user that data could not be loaded
+                // Display an error message to the user using the custom modal
+                showModal("Feil ved lasting av data", "Kunne ikke laste ingredienser og oppskrifter. Prøv igjen senere.");
                 noResultsMessage.textContent = "Kunne ikke laste ingredienser og oppskrifter. Prøv igjen senere.";
                 noResultsMessage.classList.remove('hidden');
+            })
+            .finally(() => {
+                // Hide loading overlay after fetch completes (either success or error)
+                loadingOverlay.classList.add('hidden');
             });
 
     </script>
