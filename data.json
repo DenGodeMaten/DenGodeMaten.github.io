@@ -1,6 +1,6 @@
 {
   "ingredients": [
-"melk", "egg", "sukker", "mel", "smør", "salt", "pepper", "løk", "hvitløk", "tomat", "potet", "gulrot", "brokkoli", "kylling", "biff", "fiskefilet", "ris", "pasta", "ost", "fløte", "sitron", "persille", "basilikum", "olivenolje", "eddik", "honning", "kanel", "vanilje", "bakepulver", "gjær", "sjokolade", "eple", "banan", "jordbær", "blåbær", "agurk", "paprika", "champignon", "spinat", "kål", "purre", "ingefær", "chili", "koriander", "timian", "rosmarin", "oregano", "kjøttdeig", "bacon", "pølser", "skinke", "reker", "laks", "torsk", "tunfisk", "brød", "tortilla", "couscous", "quinoa", "linser", "kikerter", "fetakrem", "rømme", "creme fraiche", "majones", "ketchup", "sennep", "soyasaus", "buljong", "grønnsaksbuljong", "kyllingbuljong", "oksebuljong", "tomatpuré", "hermetiske tomater", "kokosmelk", "peanøttsmør", "nøtter", "mandler", "valnøtter", "frø", "sesamfrø", "gresskarkjerner", "solrosfrø", "tørket frukt", "rosiner", "dadler", "aprikoser", "frukt", "appelsin", "lime", "avokado", "druer", "kiwi", "pære", "plomme", "fersken", "nektarin", "melon", "vannmelon", "honningmelon", "ananas", "mango", "papaya", "pasjonsfrukt", "kokosnøtt", "chorizo", "stangselleri", "kajennepepper", "paprikakrydder", "hvitløkskrydder", "kremfløte", "parmesan", "spagetti", "hvitvin", "fisk", "fennikel", "fiskekraft", "kjøttkraft", "gressløk", "squash", "kålrot", "persillerot", "sellerirot", "pastinakk", "søtpotet", "gresskar", "reddiker", "asparges", "grønne bønner", "sukkererter", "mais", "ertebelger", "kalamataoliven", "soltørkede tomater", "kapers", "ansjos", "sardiner", "rødvinseddik", "balsamicoeddik", "sherryeddik", "risvineddik", "dijonsennep", "honning og dijonsennep", "worcestershiresaus", "tabasco", "sesamolje", "østerssaus", "fiskesaus", "hoisinsaus", "misopasta", "peanøttolje", "rapsolje", "solsikkeolje", "kokosolje", "smult", "gelatin", "pektin", "agarpulver", "maizena", "potetmel", "natron", "vaniljesukker", "kardemomme", "nellik", "muskat", "ingefærpulver", "gurkemeie", "spisskummen", "korianderpulver", "karri", "paprikapulver", "rosmarinkrydder", "timiankrydder", "oreganokrydder", "estragon", "mynte", "dill", "løpstikke", "kruspersille", "bladpersille", "italiensk persille", "rødløk", "sjalottløk", "vårløk", "gressløkolje", "kyllinglår", "kyllingbryst", "svinekjøtt", "lammekjøtt", "viltkjøtt", "andebryst", "kalkun", "reinskav", "elgsteik", "blåskjell", "kamskjell", "krabbe", "hummer", "scampi", "makrell", "sild", "ørret", "kveite", "fullkornspasta", "couscous fullkorn", "quinoa rød", "svart ris", "villris", "byggryn", "havregryn", "hirse", "fetaost", "cheddar", "mozzarella", "geitost", "blåmuggost", "ricotta", "mascarpone", "kremost", "creme fraiche lett", "lettrømme", "lettmelk", "skummet melk", "mandeldrikk", "havredrikk", "soyadrikk", "rismelk", "glutenfritt mel", "mandelmel", "kokosmel", "rismel", "dadler tørket", "fiken tørket", "svisker", "rosiner mørke", "gojibær", "tranebær tørket", "multer", "tyttebær", "rips", "solbær", "bringebær", "bjørnebær", "bringebærsyltetøy", "jordbærsyltetøy", "blåbærsyltetøy", "eplemos", "pæremos", "plommesyltetøy", "mørk sjokolade", "lys sjokolade", "hvit sjokolade", "kakao", "sjokoladepulver", "sjokoladesaus", "kaffe", "espresso", "kakao pulver", "te", "grønn te", "svart te", "honning flytende", "lønnesirup", "agavesirup", "brun farin", "melis", "stevia", "peanøtter", "cashewnøtter", "pistasjnøtter", "hasselnøtter", "makadamianøtter", "pecannøtter", "paranøtter", "gresskarkjerner ristede", "solsikkefrø ristede", "linfrø", "chiafrø", "valmuefrø", "pinjekjerner", "balsamico", "epleeddik", "hvitvinseddik", "bringebæreddikt", "eplejuice", "appelsinjuice", "druejuice", "sitronjuice", "limejuice", "taco krydder", "kidneybønner", "jalapeño", "tacoskjell", "salat", "kyllingkjøttdeig", "biffstrimler", "fiskeboller", "blomkål", "erter", "makaroni", "revet ost", "brødsmuler", "fiskebuljong", "risgrøt", "vann", "syltetøy", "sukrin", "kikertmel", "olje", "selleri", "laurbærblad", "grønnsaker", "brødskiver", "skinke", "tortillalefser", "kyllingfilet", "salsa", "pizzadeig", "pitabrød", "dressing", "hamburgerbrød", "karbonadedeig", "potetmos", "lammekoteletter", "svinefilet", "tranebærsaus", "viltgryte", "elgkjøtt", "einebær", "rødvin", "sjampinjong", "sushi ris", "noriflak", "wasabi", "ingefær syltet", "vårrullpapir", "bønnespirer", "peanøttsaus", "kjøttboller", "gulrotkake", "brownie", "muffins", "blåbær", "sjokoladebiter", "rundstykker", "focaccia", "hvetemel", "flaksalt", "pizza", "mozzarella", "nanbrød", "yoghurt", "nigellafrø", "bagetter", "rugbrød", "rugmel", "sirup", "knekkebrød"
+"melk", "egg", "sukker", "mel", "smør", "salt", "pepper", "løk", "hvitløk", "tomat", "potet", "gulrot", "brokkoli", "kylling", "biff", "fiskefilet", "ris", "pasta", "ost", "fløte", "sitron", "persille", "basilikum", "olivenolje", "eddik", "honning", "kanel", "vanilje", "bakepulver", "gjær", "sjokolade", "eple", "banan", "jordbær", "blåbær", "agurk", "paprika", "champignon", "spinat", "kål", "purre", "ingefær", "chili", "koriander", "timian", "rosmarin", "oregano", "kjøttdeig", "bacon", "pølser", "skinke", "reker", "laks", "torsk", "tunfisk", "brød", "tortilla", "couscous", "quinoa", "linser", "kikerter", "fetakrem", "rømme", "creme fraiche", "majones", "ketchup", "sennep", "soyasaus", "buljong", "grønnsaksbuljong", "kyllingbuljong", "oksebuljong", "tomatpuré", "hermetiske tomater", "kokosmelk", "peanøttsmør", "nøtter", "mandler", "valnøtter", "frø", "sesamfrø", "gresskarkjerner", "solrosfrø", "tørket frukt", "rosiner", "dadler", "aprikoser", "frukt", "appelsin", "lime", "avokado", "druer", "kiwi", "pære", "plomme", "fersken", "nektarin", "melon", "vannmelon", "honningmelon", "ananas", "mango", "papaya", "pasjonsfrukt", "kokosnøtt", "chorizo", "stangselleri", "kajennepepper", "paprikakrydder", "hvitløkskrydder", "kremfløte", "parmesan", "spagetti", "hvitvin", "fisk", "fennikel", "fiskekraft", "kjøttkraft", "gressløk", "squash", "kålrot", "persillerot", "sellerirot", "pastinakk", "søtpotet", "gresskar", "reddiker", "asparges", "grønne bønner", "sukkererter", "mais", "ertebelger", "kalamataoliven", "soltørkede tomater", "kapers", "ansjos", "sardiner", "rødvinseddik", "balsamicoeddik", "sherryeddik", "risvineddik", "dijonsennep", "honning og dijonsennep", "worcestershiresaus", "tabasco", "sesamolje", "østerssaus", "fiskesaus", "hoisinsaus", "misopasta", "peanøttolje", "rapsolje", "solsikkeolje", "kokosolje", "smult", "gelatin", "pektin", "agarpulver", "maizena", "potetmel", "natron", "vaniljesukker", "kardemomme", "nellik", "muskat", "ingefærpulver", "gurkemeie", "spisskummen", "korianderpulver", "karri", "paprikapulver", "rosmarinkrydder", "timiankrydder", "oreganokrydder", "estragon", "mynte", "dill", "løpstikke", "kruspersille", "bladpersille", "italiensk persille", "rødløk", "sjalottløk", "vårløk", "gressløkolje", "kyllinglår", "kyllingbryst", "svinekjøtt", "lammekjøtt", "viltkjøtt", "andebryst", "kalkun", "reinskav", "elgsteik", "blåskjell", "kamskjell", "krabbe", "hummer", "scampi", "makrell", "sild", "ørret", "kveite", "fullkornspasta", "couscous fullkorn", "quinoa rød", "svart ris", "villris", "byggryn", "havregryn", "hirse", "fetaost", "cheddar", "mozzarella", "geitost", "blåmuggost", "ricotta", "mascarpone", "kremost", "creme fraiche lett", "lettrømme", "lettmelk", "skummet melk", "mandeldrikk", "havredrikk", "soyadrikk", "rismelk", "glutenfritt mel", "mandelmel", "kokosmel", "rismel", "dadler tørket", "fiken tørket", "svisker", "rosiner mørke", "gojibær", "tranebær tørket", "multer", "tyttebær", "rips", "solbær", "bringebær", "bjørnebær", "bringebærsyltetøy", "jordbærsyltetøy", "blåbærsyltetøy", "eplemos", "pæremos", "plommesyltetøy", "mørk sjokolade", "lys sjokolade", "hvit sjokolade", "kakao", "sjokoladepulver", "sjokoladesaus", "kaffe", "espresso", "kakao pulver", "te", "grønn te", "svart te", "honning flytende", "lønnesirup", "agavesirup", "brun farin", "melis", "stevia", "peanøtter", "cashewnøtter", "pistasjnøtter", "hasselnøtter", "makadamianøtter", "pecannøtter", "paranøtter", "gresskarkjerner ristede", "solsikkefrø ristede", "linfrø", "chiafrø", "valmuefrø", "pinjekjerner", "balsamico", "epleeddik", "hvitvinseddik", "bringebæreddikt", "eplejuice", "appelsinjuice", "druejuice", "sitronjuice", "limejuice", "taco krydder", "kidneybønner", "jalapeño", "tacoskjell", "salat", "kyllingkjøttdeig", "biffstrimler", "fiskeboller", "blomkål", "erter", "makaroni", "revet ost", "brødsmuler", "fiskebuljong", "risgrøt", "vann", "syltetøy", "sukrin", "kikertmel", "olje", "selleri", "laurbærblad", "grønnsaker", "brødskiver", "skinke", "tortillalefser", "kyllingfilet", "salsa", "pizzadeig", "pitabrød", "dressing", "hamburgerbrød", "karbonadedeig", "potetmos", "lammekoteletter", "svinefilet", "tranebærsaus", "viltgryte", "elgkjøtt", "einebær", "rødvin", "sjampinjong", "sushi ris", "noriflak", "wasabi", "ingefær syltet", "vårrullpapir", "bønnespirer", "peanøttsaus", "kjøttboller", "gulrotkake", "brownie", "muffins", "blåbær", "sjokoladebiter", "rundstykker", "focaccia", "hvetemel", "flaksalt", "pizza", "mozzarella", "nanbrød", "yoghurt", "nigellafrø", "bagetter", "rugbrød", "rugmel", "sirup", "knekkebrød", "østerssaus", "kokosmasse","pikekyss", "vaniljestang", "griljermel", "løkpuler", "pastaplater", "kokesjokolade"
 ],
   "recipes": [
     {
@@ -35,7 +35,7 @@
     },
     {
       "name": "Enkel pannekaker",
-      "ingredients": ["mel", "egg", "melk", "sukker", "smør", "salt"],
+      "ingredients": ["mel", "egg", "melk", "smør", "salt"],
       "url": "./oppskrifter/pannekaker",
       "type": "frokost"
     },
@@ -47,7 +47,7 @@
     },
     {
       "name": "Grønnsakswok - (Godt.no)",
-      "ingredients": ["løk", "paprika", "sopp", "sukkererter", "squash", "rødløk", "hvitløk", "østerssaus", "soyasaus", "sesamolje", "olje","koriander", 
+      "ingredients": ["løk", "paprika", "sopp", "sukkererter", "squash", "rødløk", "hvitløk", "østerssaus", "soyasaus", "sesamolje", "olje","koriander"],
       "url": "https://www.godt.no/oppskrifter/wok/7141/wokkede-groennsaker-med-soya",
       "type": "middag"
     },
@@ -59,7 +59,7 @@
     },
     {
       "name": "Eplekake (Godt.no)",
-      "ingredients": ["smør", "egg", "vaniljestang", "bakepulver", "hvetemel","melk", "eple", "sukker","kanel","smør"
+      "ingredients": ["smør", "egg", "vaniljestang", "bakepulver", "hvetemel","melk", "eple", "sukker","kanel","smør"],
       "url": "https://www.godt.no/oppskrifter/kaker/frukt-og-baerkaker/8980/eplekake",
       "type": "kaker"
     },
@@ -74,6 +74,42 @@
       "ingredients": ["bringebær", "sukker", "fløte", "vaniljestang","pikekyss"],
       "url": "https://www.godt.no/oppskrifter/dessert/7631/bringebaer-pikekyss-og-krem",
       "type": "dessert"
+    }, 
+    {
+      "name": "Pasta Bolognese - (Godt.no)", 
+      "ingredients": ["kjøttdeig", "løk", "stangselleri", "gulrot", "hvitløk", "bacon", "tomatpuré", "hermetiske tomater", "oregano", "timian", "kjøttkraft", "pasta", "basilikum", "parmesan", "salt", "pepper"],
+      "url": "https://www.godt.no/oppskrifter/pasta/314/spagetti-bolognese-paa-30-min",
+      "type": "middag"
+    }, 
+    {
+      "name": "Hamburger - (Gladkokken.no)", 
+      "ingredients": ["kjøttdeig", "griljermel","egg", "salt", "oregano", "løkpuler", "hvitløkskrydder", "worcestershiresaus"],
+      "url": "https://gladkokken.no/oppskrifter/hverdagsburgere-rask-middag-med-god-smak",
+      "type": "middag"
+    }, 
+    {
+      "name": "Tandoori Kylling - (Godt.no)", 
+      "ingredients": ["kyllingfilet", "sitron", "salt", "yoghurt", "hvitløk", "ingefær", "spisskummen", "koriander", "pepper", "koriander"], 
+      "url": "https://www.godt.no/oppskrifter/gryte/kyllinggryte/8406/tandoori-kylling",
+      "type": "middag"
+    }, 
+    {
+      "name": "Kyllingspyd - (Det Glade Kjøkken)",
+      "ingredients":["chili", "hvitløk","ingefær","brun farin","soyasaus","olje","lime","salt"], 
+      "url": "https://detgladekjokken.no/oppskrift/asiatiske-grillspyd-med-kylling/", 
+      "type":"middag"
+    }, 
+    {
+      "name": "Lasagne - (Trines Matblogg)", 
+      "ingredients":["kjøttdeig","bacon","løk","hvitløk","tomatpuré","gulrot","paprika","sellerirot","stangselleri","hermetiske tomater","vann","basilikum","pepper","melk","smør","hvetemel","salt", "pastaplater", "parmesan"], 
+      "url": "https://trinesmatblogg.no/recipe/lasagne-til-mafiaen/", 
+      "type":"middag"
+    }, 
+    {
+      "name": "Brownie - (Det Søte Liv)", 
+      "ingredients":["kokesjokolade", "smør","sukker","egg","hvetemel","bakepulver"], 
+      "url": "https://www.detsoteliv.no/oppskrift/brownies", 
+      "type": "kaker"
     }
   ]
 }
