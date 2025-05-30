@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mathjelper av velging av oppskrifter</title>
+    <title>Pannekaker - Oppskrift</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -31,7 +31,16 @@
                 padding-left: 120px; /* Make space for the logo on the left */
             }
         }
-
+        /* style to ".container" */
+        .container {
+            background-color: #ffffff; /* White box */
+            padding: 2.5rem; /* More padding */
+            border-radius: 1rem; /* Round corners */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Shadow */
+            max-width: 600px;
+            width: 100%;
+            text-align: center; /* Text centered */
+        }
         /* Style for the logo - Adjusted for responsive positioning */
         .logo {
             width: 100px; /* Set a fixed width for the logo */
@@ -50,9 +59,56 @@
                 z-index: 10; /* Ensure logo is on top of other content */
             }
         }
+        /* Styles for the list within the container */
+        ul {
+            list-style-type: disc; /* Standard bullet points */
+            margin-left: 1.5rem; /* Indent the list */
+            text-align: left; /* Align list items to the left */
+            color: #34495e; /* Darker text color */
+            font-size: 1.1rem; /* Larger text in the list */
+            line-height: 1.8; /* More line spacing */
+        }
+        li {
+            margin-bottom: 0.5rem; /* Some space between list items */
+        }
     </style>
 </head>
 <body class="antialiased">
     <a href="../">
         <img src="../logo.png" alt="De Godes Mat Logo" class="logo">
-</a></body>
+    </a>
+    <div class="container">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">Pannekaker</h1>
+
+        <div class="bg-white p-8 shadow-lg w-full max-w-md text-center">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Ingredienser</h2>
+
+            <div class="bg-gray-100 p-6 rounded-lg border border-gray-200 text-gray-700 text-left">
+                <ul>
+                    <li>3 ss    smør</li>
+                    <li>3 dl    hvetemel</li>
+                    <li>1/2 ts  salt</li>
+                    <li>6 dl    melk</li>
+                    <li>3 stk   egg</li>
+                    <li>+       smør til steking</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bg-white p-8 shadow-lg w-full max-w-md text-center mt-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Slik gjør du det</h2>
+
+            <div class="bg-gray-100 p-6 rounded-lg border border-gray-200 text-gray-700 text-left">
+                <ul>
+                <li class="text-lg leading-relaxed">
+                    Smelt smøret i en kjele, og la det avkjøles litt. 
+                    Bland alt oppi en bolle, og bland det til en jevn, klumpfri røre. 
+                    La røren svelle i noen minutter før du steker pannekakene. 
+                    Stek kakene i en stekepanne med litt smør til de begynner å stivne på siden som ligger opp, flipp dem da. 
+                </li>
+            </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
