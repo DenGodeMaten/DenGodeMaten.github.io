@@ -46,33 +46,33 @@
       "type": "middag"
     },
     {
-      "name": "Grønnsakswok",
-      "ingredients": ["brokkoli", "gulrot", "paprika", "løk", "kylling", "soyasaus", "ris", "ingefær", "hvitløk"],
-      "url": "https://www.example.com/oppskrift/wok",
+      "name": "Grønnsakswok - (Godt.no)",
+      "ingredients": ["løk", "paprika", "sopp", "sukkererter", "squash", "rødløk", "hvitløk", "østerssaus", "soyasaus", "sesamolje", "olje","koriander", 
+      "url": "https://www.godt.no/oppskrifter/wok/7141/wokkede-groennsaker-med-soya",
       "type": "middag"
     },
     {
-      "name": "Sjokoladekake",
-      "ingredients": ["mel", "sukker", "kakao", "egg", "melk", "smør", "bakepulver"],
-      "url": "https://www.example.com/oppskrift/sjokoladekake",
+      "name": "Sjokoladekake (Godt.no)",
+      "ingredients": ["smør", "kakao pulver", "egg", "sukker", "hvetemel", "bakepulver", "melis", "vaniljesukker", "kaffe", "kokosmasse"],
+      "url": "https://www.godt.no/oppskrifter/kaker/sjokoladekaker/965/sjokoladekake-i-langpanne",
       "type": "kaker"
     },
     {
-      "name": "Eplekake",
-      "ingredients": ["eple", "mel", "sukker", "smør", "kanel", "egg"],
-      "url": "https://www.example.com/oppskrift/eplekake",
+      "name": "Eplekake (Godt.no)",
+      "ingredients": ["smør", "egg", "vaniljestang", "bakepulver", "hvetemel","melk", "eple", "sukker","kanel","smør"
+      "url": "https://www.godt.no/oppskrifter/kaker/frukt-og-baerkaker/8980/eplekake",
       "type": "kaker"
     },
     {
-      "name": "Fruktsalat",
-      "ingredients": ["eple", "banan", "jordbær", "blåbær", "appelsin", "kiwi"],
-      "url": "https://www.example.com/oppskrift/fruktsalat",
+      "name": "Fruktsalat (Matprat.no)",
+      "ingredients": ["vaniljestang", "vann", "sukker", "appelsin", "druer","jordbær","banan","eple","mandler"],
+      "url": "https://www.matprat.no/oppskrifter/sunn/fruktsalat/",
       "type": "dessert"
     },
     {
-      "name": "Bær med krem",
-      "ingredients": ["jordbær", "blåbær", "fløte", "sukker"],
-      "url": "https://www.example.com/oppskrift/baer-krem",
+      "name": "Bær med krem (Godt.no)",
+      "ingredients": ["bringebær", "sukker", "fløte", "vaniljestang","pikekyss"],
+      "url": "https://www.godt.no/oppskrifter/dessert/7631/bringebaer-pikekyss-og-krem",
       "type": "dessert"
     }
   ]
