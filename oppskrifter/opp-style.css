@@ -1,0 +1,64 @@
+/* Custom styles for the body to ensure full height and responsive layout */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f4f8; /* Light background for contrast */
+    display: flex;
+    flex-direction: column; /* Default to column for small screens */
+    justify-content: flex-start; /* Align items to the start, allow auto margins to push */
+    align-items: center;
+    min-height: 100vh; /* Full viewport height */
+    margin: 0;
+    padding: 20px; /* Some padding around the content */
+    box-sizing: border-box; /* Include padding in the element's total width/height */
+    position: relative; /* Needed for absolute positioning of the logo */
+}
+
+/* For larger screens, arrange elements side by side */
+@media (min-width: 1024px) { /* Tailwind's 'lg' breakpoint */
+    body {
+        flex-direction: row; /* Side by side for large screens */
+        align-items: flex-start; /* Align to the top */
+        justify-content: center; /* Center content horizontally */
+        padding-left: 120px; /* Make space for the logo on the left */
+    }
+}
+/* style to ".container" */
+.container {
+    background-color: #ffffff; /* White box */
+    padding: 2.5rem; /* More padding */
+    border-radius: 1rem; /* Round corners */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Shadow */
+    max-width: 600px;
+    width: 100%;
+    text-align: center; /* Text centered */
+}
+/* Style for the logo - Adjusted for responsive positioning */
+.logo {
+    width: 100px; /* Set a fixed width for the logo */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Slightly rounded corners for the logo */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Small shadow for the logo */
+    margin-bottom: 20px; /* Add margin for spacing on small screens */
+}
+
+@media (min-width: 1024px) {
+    .logo {
+        position: fixed; /* Fix position for large screens */
+        top: 20px; /* Distance from top */
+        left: 20px; /* Distance from left */
+        margin-bottom: 0; /* Remove margin on large screens */
+        z-index: 10; /* Ensure logo is on top of other content */
+    }
+}
+/* Styles for the list within the container */
+ul {
+    list-style-type: disc; /* Standard bullet points */
+    margin-left: 1.5rem; /* Indent the list */
+    text-align: left; /* Align list items to the left */
+    color: #34495e; /* Darker text color */
+    font-size: 1.1rem; /* Larger text in the list */
+    line-height: 1.8; /* More line spacing */
+}
+li {
+    margin-bottom: 0.5rem; /* Some space between list items */
+}

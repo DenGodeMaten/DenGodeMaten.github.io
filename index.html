@@ -3,298 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mathjelper av velging av oppskrifter</title>
+    <title>Mathjelper</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Custom styles for the body to ensure full height and responsive layout */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8; /* Light background for contrast */
-            display: flex;
-            flex-direction: column; /* Default to column for small screens */
-            justify-content: flex-start; /* Align items to the start, allow auto margins to push */
-            align-items: center;
-            min-height: 100vh; /* Full viewport height */
-            margin: 0;
-            padding: 20px; /* Some padding around the content */
-            box-sizing: border-box; /* Include padding in the element's total width/height */
-            position: relative; /* Needed for absolute positioning of the logo */
-        }
-
-        /* For larger screens, arrange elements side by side */
-        @media (min-width: 1024px) { /* Tailwind's 'lg' breakpoint */
-            body {
-                flex-direction: row; /* Side by side for large screens */
-                align-items: flex-start; /* Align to the top */
-                justify-content: center; /* Center content horizontally */
-                padding-left: 120px; /* Make space for the logo on the left */
-            }
-        }
-
-        /* Style for clickable list items in search results */
-        #resultsList li {
-            cursor: pointer; /* Indicates the element is clickable */
-            padding: 4px 0; /* Some vertical padding */
-            transition: background-color 0.2s ease-in-out; /* Smooth transition on hover */
-        }
-        #resultsList li:hover {
-            background-color: #e2e8f0; /* Light background on hover */
-            border-radius: 4px; /* Slightly rounded corners on hover */
-        }
-
-        /* Style for clickable list items in the selected list */
-        #selectedIngredientsList li {
-            cursor: pointer; /* Indicates the element is clickable */
-            padding: 4px 8px; /* Some padding */
-            margin-bottom: 4px; /* Some space between items */
-            background-color: #dbeafe; /* Light blue background */
-            border-radius: 6px; /* Rounded corners */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
-        }
-        #selectedIngredientsList li:hover {
-            background-color: #bfdbfe; /* Darker blue on hover */
-            transform: translateX(2px); /* Small movement to the right on hover */
-        }
-        #selectedIngredientsList li .remove-btn {
-            color: #ef4444; /* Red color for the remove button */
-            font-weight: bold;
-            margin-left: 8px;
-            cursor: pointer;
-            font-size: 1.2em;
-            line-height: 1; /* To vertically center the X */
-        }
-        #selectedIngredientsList li .remove-btn:hover {
-            color: #dc2626; /* Darker red on hover */
-        }
-
-        /* Style for recipe cards */
-        .recipe-card {
-            background-color: #f8fafc; /* Very light background */
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08); /* Small shadow */
-            cursor: pointer; /* Indicate that the card is clickable */
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        }
-        .recipe-card:hover {
-            transform: translateY(-2px); /* Lift effect on hover */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.12); /* Stronger shadow on hover */
-        }
-        .recipe-card h3 {
-            font-weight: 600; /* Semibold */
-            color: #2d3748; /* Dark gray */
-            margin-bottom: 4px;
-        }
-        .recipe-card a {
-            text-decoration: none; /* Remove underline from links */
-            color: inherit; /* Inherit color from parent */
-        }
-        .recipe-card p {
-            font-size: 0.9em;
-            color: #4a5568; /* Medium gray */
-        }
-        .recipe-card .missing-ingredients {
-            color: #e53e3e; /* Red for missing ingredients */
-            font-weight: 500;
-        }
-        .recipe-card .matched-ingredients {
-            color: #38a169; /* Green for matching ingredients */
-            font-weight: 500;
-        }
-
-        /* Style for filter buttons */
-        .filter-button {
-            background-color: #e5e7eb; /* bg-gray-200 */
-            color: #374151; /* text-gray-700 */
-            font-weight: 600; /* font-semibold */
-            padding-top: 0.5rem; /* py-2 */
-            padding-bottom: 0.5rem;
-            padding-left: 1rem; /* px-4 */
-            padding-right: 1rem;
-            border-radius: 0.5rem; /* rounded-lg */
-            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); /* shadow-sm */
-            transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
-            outline: none;
-        }
-        .filter-button:hover {
-            background-color: #d1d5db; /* hover:bg-gray-300 */
-        }
-        .filter-button:focus {
-            outline: 2px solid #3b82f6; /* focus:ring-2 focus:ring-blue-500 */
-            outline-offset: 2px;
-        }
-        .filter-button.active {
-            background-color: #2563eb; /* bg-blue-600 */
-            color: #fff; /* text-white */
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1); /* shadow-md */
-        }
-
-        /* Style for the logo - Adjusted for responsive positioning */
-        .logo {
-            width: 100px; /* Set a fixed width for the logo */
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 8px; /* Slightly rounded corners for the logo */
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Small shadow for the logo */
-            margin-bottom: 20px; /* Add margin for spacing on small screens */
-        }
-
-        @media (min-width: 1024px) {
-            .logo {
-                position: fixed; /* Fix position for large screens */
-                top: 20px; /* Distance from top */
-                left: 20px; /* Distance from left */
-                margin-bottom: 0; /* Remove margin on large screens */
-                z-index: 10; /* Ensure logo is on top of other content */
-            }
-        }
-
-        /* Loading indicator styles */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            transition: opacity 0.3s ease-in-out;
-        }
-        .loading-spinner {
-            border: 4px solid #f3f3f3; /* Light grey */
-            border-top: 4px solid #3b82f6; /* Blue */
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Modal styles */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1001;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-        }
-        .modal-overlay.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        .modal-content {
-            background-color: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-            transform: translateY(-20px);
-            transition: transform 0.3s ease-in-out;
-        }
-        .modal-overlay.show .modal-content {
-            transform: translateY(0);
-        }
-        .modal-content h3 {
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        .modal-content p {
-            margin-bottom: 20px;
-            color: #555;
-        }
-        .modal-content button {
-            background-color: #3b82f6;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background-color 0.2s ease-in-out;
-        }
-        .modal-content button:hover {
-            background-color: #2563eb;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="antialiased">
-    <img src="./logo.png" alt="De Godes Mat Logo" class="logo">
+    <header id="mainHeader" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-4 shadow-md flex flex-col items-center justify-center rounded-b-xl mb-6 lg:flex-row lg:justify-start lg:px-8 lg:py-6">
+        <img src="./logo.png" alt="De Godes Mat Logo" class="h-24 w-24 rounded-lg shadow-md mb-4 lg:mb-0 lg:mr-6">
+        <h1 class="text-3xl font-bold text-center lg:text-left">Mathjelper av velging av oppskrifter</h1>
+    </header>
 
-    <div class="w-full max-w-md p-4 bg-white rounded-xl shadow-lg flex flex-col items-center space-y-3 mb-6 lg:mb-0 lg:mr-6">
-        <div class="w-full flex items-center space-x-3">
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="Søk etter ingredienser..."
-                class="flex-grow px-4 py-2 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
-                aria-label="Søkefelt for ingredienser"
-            >
-            <button
-                id="searchButton"
-                class="flex-shrink-0 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75"
-                aria-label="Søkeknapp"
-            >
-                Søk
-            </button>
-        </div>
-
-        <div id="searchResults" class="w-full p-4 bg-gray-50 rounded-xl mt-4 hidden">
-            <h2 class="text-xl font-semibold text-gray-800 mb-3">Søkeresultater:</h2>
-            <ul id="resultsList" class="list-disc pl-5 text-gray-700">
-            </ul>
-            <p id="noResultsMessage" class="text-gray-500 italic hidden">Ingen ingredienser funnet.</p>
-        </div>
-    </div>
-
-    <div class="w-full max-w-md flex flex-col space-y-6">
-        <div id="selectedIngredientsContainer" class="p-4 bg-white rounded-xl shadow-lg">
-            <div class="flex justify-between items-center mb-3">
-                <h2 class="text-xl font-semibold text-gray-800">Valgte Ingredienser:</h2>
-                <button
-                    id="clearSelectedButton"
+    <div class="main-content-area flex flex-col lg:flex-row lg:space-x-6">
+        <div class="w-full max-w-md p-4 bg-white rounded-xl shadow-lg flex flex-col items-center space-y-3 mb-6 lg:mb-0 lg:mr-6">
+            <div class="w-full flex items-center space-x-3">
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Søk etter ingredienser..."
+                    class="flex-grow px-4 py-2 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
+                    aria-label="Søkefelt for ingredienser"
                 >
-                    <img src="./bin.jpg" alt="Fjern alle" class="h-8 w-8"
+                <button
+                    id="searchButton"
+                    class="flex-shrink-0 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75"
+                    aria-label="Søkeknapp"
+                >
+                    Søk
                 </button>
             </div>
-            <ul id="selectedIngredientsList" class="text-gray-700">
-            </ul>
-            <p id="noSelectedIngredientsMessage" class="text-gray-500 italic">Ingen ingredienser valgt.</p>
+
+            <div id="searchResults" class="w-full p-4 bg-gray-50 rounded-xl mt-4 hidden">
+                <h2 class="text-xl font-semibold text-gray-800 mb-3">Søkeresultater:</h2>
+                <ul id="resultsList" class="list-disc pl-5 text-gray-700">
+                </ul>
+                <p id="noResultsMessage" class="text-gray-500 italic hidden">Ingen ingredienser funnet.</p>
+            </div>
         </div>
 
-        <div id="suggestedRecipesContainer" class="p-4 bg-white rounded-xl shadow-lg">
-            <h2 class="text-xl font-semibold text-gray-800 mb-3">Foreslåtte Oppskrifter:</h2>
-            <div id="mealTypeFilters" class="flex flex-wrap gap-2 mb-4">
-                <button class="filter-button active" data-filter="alle">Alle</button>
-                <button class="filter-button" data-filter="middag">Middag</button>
-                <button class="filter-button" data-filter="frokost">Frokost</button>
-                <button class="filter-button" data-filter="dessert">Dessert</button>
-                <button class="filter-button" data-filter="kaker">Kaker</button>
-                <button class="filter-button" data-filter="suppe">Supper</button>
+        <div class="w-full max-w-md flex flex-col space-y-6">
+            <div id="selectedIngredientsContainer" class="p-4 bg-white rounded-xl shadow-lg">
+                <div class="flex justify-between items-center mb-3">
+                    <h2 class="text-xl font-semibold text-gray-800">Valgte Ingredienser:</h2>
+                    <button
+                        id="clearSelectedButton"
+                        class="p-2 rounded-full hover:bg-gray-100 transition duration-200 ease-in-out"
+                        aria-label="Fjern alle valgte ingredienser"
+                    >
+                        <img src="./bin.jpg" alt="Fjern alle" class="h-8 w-8">
+                    </button>
+                </div>
+                <ul id="selectedIngredientsList" class="text-gray-700">
+                </ul>
+                <p id="noSelectedIngredientsMessage" class="text-gray-500 italic">Ingen ingredienser valgt.</p>
             </div>
-            <div id="recipesList" class="text-gray-700">
+
+            <div id="suggestedRecipesContainer" class="p-4 bg-white rounded-xl shadow-lg">
+                <h2 class="text-xl font-semibold text-gray-800 mb-3">Foreslåtte Oppskrifter:</h2>
+                <div id="mealTypeFilters" class="flex flex-wrap gap-2 mb-4">
+                    <button class="filter-button active" data-filter="alle">Alle</button>
+                    <button class="filter-button" data-filter="middag">Middag</button>
+                    <button class="filter-button" data-filter="frokost">Frokost</button>
+                    <button class="filter-button" data-filter="dessert">Dessert</button>
+                    <button class="filter-button" data-filter="kaker">Kaker</button>
+                    <button class="filter-button" data-filter="suppe">Supper</button>
+                </div>
+                <div id="recipesList" class="text-gray-700">
+                </div>
+                <p id="noSuggestedRecipesMessage" class="text-gray-500 italic">Legg til ingredienser for å få oppskriftsforslag.</p>
             </div>
-            <p id="noSuggestedRecipesMessage" class="text-gray-500 italic">Legg til ingredienser for å få oppskriftsforslag.</p>
         </div>
     </div>
 
