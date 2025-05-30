@@ -594,14 +594,8 @@
 
         // Add event listener for click on the search button
         searchButton.addEventListener('click', performSearch);
-
-        // Add event listener for 'Enter' keypress in the input field
-        searchInput.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault(); // Prevent default form submission
-                performSearch(); // Perform the search
-            }
-        });
+        searchInput.addEventListener('input', performSearch);
+        
 
         // New: Add event listener for the "Clear All" button
         clearSelectedButton.addEventListener('click', clearSelectedIngredients);
