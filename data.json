@@ -254,6 +254,18 @@
       "ingredients":["kyllingfilet","hvetemel","paprikapulver","salt","gastromat","chilipulver","egg","cornflakes","majones","sylteagurk","løk","ketchup","srirachasaus","hamburgerbrød","salat"],
       "url":"https://idamariesmat.no/oppskrift/crispy-kyllingburger-med-chunky-dressing/",
       "type":"middag"
+    },
+    {
+      "name":"Iskrem - (Matprat)",
+      "ingredients":["vaniljestang", "eggeplomme", "sukker","kremfløte"],
+      "url":"https://www.matprat.no/oppskrifter/familien/hjemmelaget-iskrem/",
+      "type":"dessert"
+    },
+    {
+      "name":"Pepperkake - (Matprat)",
+      "ingredients":["smør","sukker","malt nellik","malt ingefær","pepper , strøkne","malt kanel","mørk sirup","egg","natron","hvetemel"],
+      "url":"https://www.matprat.no/oppskrifter/tradisjon/pepperkaker/?gad_source=1&gad_campaignid=9724109716&gbraid=0AAAAAD-igi479EqsdzzYjUSTCgRdAm_xf&gclid=EAIaIQobChMI0oHv1bHSjQMVIpdoCR1LISSNEAAYASAAEgIOh_D_BwE",
+      "type":"dessert"
     }
   ]
 }
