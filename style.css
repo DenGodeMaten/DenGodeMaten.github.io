@@ -1,209 +1,224 @@
         /* Custom styles for the modal and loading overlay */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
 
-        .loading-spinner {
-            border: 8px solid #f3f3f3;
-            border-top: 8px solid #3498db;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            animation: spin 2s linear infinite;
-        }
+.loading-spinner {
+    border: 8px solid #f3f3f3;        
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+}
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1001;
-            opacity: 0; /* Start hidden */
-            visibility: hidden; /* Start hidden */
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    opacity: 0; /* Start hidden */
+    visibility: hidden; /* Start hidden */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
 
-        .modal-overlay.show {
-            opacity: 1;
-            visibility: visible;
-        }
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
 
-        .modal-content {
-            background-color: #fff;
-            padding: 2rem;
-            border-radius: 0.75rem; /* rounded-xl */
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg */
-            text-align: center;
-            max-width: 90%;
-            width: 400px;
-            transform: translateY(-20px); /* Start slightly above */
-            transition: transform 0.3s ease;
-        }
+.modal-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 0.75rem; /* rounded-xl */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg */
+    text-align: center;
+    max-width: 90%;
+    width: 400px;
+    transform: translateY(-20px); /* Start slightly above */
+    transition: transform 0.3s ease;
+}
 
-        .modal-overlay.show .modal-content {
-            transform: translateY(0); /* Slide into place */
-        }
+.modal-overlay.show .modal-content {
+    transform: translateY(0); /* Slide into place */
+}
 
-        .modal-content h3 {
-            font-size: 1.5rem; /* text-xl */
-            font-weight: 600; /* font-semibold */
-            color: #1f2937; /* text-gray-800 */
-            margin-bottom: 1rem;
-        }
+.modal-content h3 {
+    font-size: 1.5rem; /* text-xl */
+    font-weight: 600; /* font-semibold */
+    color: #1f2937; /* text-gray-800 */
+    margin-bottom: 1rem;
+}
 
-        .modal-content p {
-            color: #374151; /* text-gray-700 */
-            margin-bottom: 1.5rem;
-        }
+.modal-content p {
+    color: #374151; /* text-gray-700 */
+    margin-bottom: 1.5rem;
+}
 
-        .modal-content button {
-            background-color: #2563eb; /* bg-blue-600 */
-            color: white;
-            font-weight: 600; /* font-semibold */
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem; /* rounded-lg */
-            transition: background-color 0.2s ease;
-        }
+.modal-content button {
+    background-color: #2563eb; /* bg-blue-600 */
+    color: white;
+    font-weight: 600; /* font-semibold */
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem; /* rounded-lg */
+    transition: background-color 0.2s ease;
+}
 
-        .modal-content button:hover {
-            background-color: #1d4ed8; /* hover:bg-blue-700 */
-        }
+.modal-content button:hover {
+    background-color: #1d4ed8; /* hover:bg-blue-700 */
+}
 
         /* Styles for ingredient items and remove button */
-        .ingredient-item {
-            padding: 0.5rem 0.75rem;
-            background-color: #f3f4f6; /* bg-gray-100 */
-            border-radius: 0.5rem;
-            margin-bottom: 0.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
+.ingredient-item {
+    padding: 0.5rem 0.75rem;
+    background-color: #f3f4f6; /* bg-gray-100 */
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
 
-        .ingredient-item:hover {
-            background-color: #e5e7eb; /* hover:bg-gray-200 */
-        }
+.ingredient-item:hover {
+    background-color: #e5e7eb; /* hover:bg-gray-200 */
+}
 
-        .remove-btn {
-            background-color: #ef4444; /* bg-red-500 */
-            color: white;
-            border-radius: 50%;
-            width: 1.5rem;
-            height: 1.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 0.875rem; /* text-sm */
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
+.remove-btn {
+    background-color: #ef4444; /* bg-red-500 */
+    color: white;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.875rem; /* text-sm */
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
 
-        .remove-btn:hover {
-            background-color: #dc2626; /* bg-red-600 */
-        }
+.remove-btn:hover {
+    background-color: #dc2626; /* bg-red-600 */
+}
 
         /* Styles for recipe cards */
-        .recipe-card {
-            background-color: #f9fafb; /* bg-gray-50 */
-            border-radius: 0.75rem; /* rounded-xl */
-            padding: 1rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* shadow-sm */
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
+.recipe-card {
+    background-color: #f9fafb; /* bg-gray-50 */
+    border-radius: 0.75rem; /* rounded-xl */
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* shadow-sm */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-        .recipe-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
-        }
+.recipe-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
+}
 
-        .recipe-card h3 {
-            font-size: 1.25rem; /* text-lg */
-            font-weight: 600; /* font-semibold */
-            color: #1f2937; /* text-gray-800 */
-            margin-bottom: 0.5rem;
-        }
+.recipe-card h3 {
+    font-size: 1.25rem; /* text-lg */
+    font-weight: 600; /* font-semibold */
+    color: #1f2937; /* text-gray-800 */
+    margin-bottom: 0.5rem;
+}
 
-        .recipe-card h3 a {
-            color: #2563eb; /* text-blue-600 */
-            text-decoration: none;
-        }
+.recipe-card h3 a {
+    color: #2563eb; /* text-blue-600 */
+    text-decoration: none;
+}
 
-        .recipe-card h3 a:hover {
-            text-decoration: underline;
-        }
+.recipe-card h3 a:hover {
+    text-decoration: underline;
+}
 
-        .recipe-card .matched-ingredients {
-            color: #374151; /* text-gray-700 */
-            font-size: 0.9rem;
-            margin-bottom: 0.25rem;
-        }
+.recipe-card .matched-ingredients {
+    color: #374151; /* text-gray-700 */
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
 
-        .recipe-card .missing-ingredients {
-            color: #ef4444; /* text-red-500 */
-            font-size: 0.85rem;
-        }
+.recipe-card .missing-ingredients {
+    color: #ef4444; /* text-red-500 */
+    font-size: 0.85rem;
+}
 
         /* Styles for filter buttons */
-        .filter-button {
-            background-color: #e5e7eb; /* bg-gray-200 */
-            color: #374151; /* text-gray-700 */
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-weight: 500; /* font-medium */
-            transition: background-color 0.2s ease, color 0.2s ease;
-            cursor: pointer;
-        }
+.filter-button {
+    background-color: #e5e7eb; /* bg-gray-200 */
+    color: #374151; /* text-gray-700 */
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500; /* font-medium */
+    transition: background-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+}
 
-        .filter-button:hover {
-            background-color: #d1d5db; /* bg-gray-300 */
-        }
+.filter-button:hover {
+    background-color: #d1d5db; /* bg-gray-300 */
+}
 
-        .filter-button.active {
-            background-color: #2563eb; /* bg-blue-600 */
-            color: white;
-        }
+.filter-button.active {
+    background-color: #2563eb; /* bg-blue-600 */
+    color: white;
+}
 
         .filter-button.active:hover {
             background-color: #1d4ed8; /* hover:bg-blue-700 */
-        }
+}
 
         /* General layout adjustments */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* bg-gray-100 */
-            padding: 1rem;
-        }
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6; /* bg-gray-100 */
+    padding: 1rem;
+}
 
-        .main-content-area {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem;
-        }
+.main-content-area {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
 
-        @media (min-width: 1024px) {
-            .main-content-area {
-                flex-direction: row;
-            }
-        }
+@media (min-width: 1024px) {
+    .main-content-area {
+        flex-direction: row;
+    }
+}
+
+.de-godes-mat-logo {
+    height: 6rem; /* 96px */
+    width: 6rem;  /* 96px */
+    border-radius: 0.5rem; /* 8px */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem; /* 16px */
+}
+
+@media (min-width: 1024px) {
+    .de-godes-mat-logo {
+        margin-bottom: 0;
+        margin-right: 1.5rem; /* 24px */
+    }
+}
