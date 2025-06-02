@@ -50,7 +50,9 @@
                         class="p-2 rounded-full hover:bg-gray-100 transition duration-200 ease-in-out"
                         aria-label="Fjern alle valgte ingredienser"
                     >
-                        <img src="./bin.jpg" alt="Fjern alle" class="h-8 w-8">
+                        <svg class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                        </svg>
                     </button>
                 </div>
                 <ul id="selectedIngredientsList" class="text-gray-700">
@@ -60,6 +62,17 @@
 
             <div id="suggestedRecipesContainer" class="p-4 bg-white rounded-xl shadow-lg">
                 <h2 class="text-xl font-semibold text-gray-800 mb-3">Foreslåtte Oppskrifter:</h2>
+
+                <div class="w-full flex items-center space-x-3 mb-4">
+                    <input
+                        type="text"
+                        id="recipeSearchInput"
+                        placeholder="Søk etter oppskriftsnavn..."
+                        class="flex-grow px-4 py-2 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
+                        aria-label="Søkefelt for oppskrifter"
+                    >
+                </div>
+
                 <div id="mealTypeFilters" class="flex flex-wrap gap-2 mb-4">
                     <button class="filter-button active" data-filter="alle">Alle</button>
                     <button class="filter-button" data-filter="middag">Middag</button>
@@ -68,6 +81,7 @@
                     <button class="filter-button" data-filter="kaker">Kaker</button>
                     <button class="filter-button" data-filter="suppe">Supper</button>
                     <button class="filter-button" data-filter="saus">Saus</button>
+                    <button class="filter-button" data-filter="drikke">Drikke</button>
                     <button class="filter-button" data-filter="tilbehør">Tilbehør</button>
                 </div>
                 <div id="recipesList" class="text-gray-700">
@@ -108,6 +122,9 @@
         const modalCloseButton = document.getElementById('modalCloseButton'); // Modal close button
         const clearSelectedButton = document.getElementById('clearSelectedButton'); // New: Clear all button
 
+        // NEW: Recipe search input element
+        const recipeSearchInput = document.getElementById('recipeSearchInput');
+
         // Global variables to hold data after loading
         let allIngredientsData = [];
         let recipesData = [];
@@ -116,6 +133,8 @@
         let selectedIngredients = [];
         // Variable to hold the active meal type filter
         let currentMealTypeFilter = 'alle'; // Default: show all
+        // NEW: Variable to hold the current recipe search query
+        let currentRecipeSearchQuery = '';
 
         /**
          * Displays the custom modal with a given title and message.
@@ -159,12 +178,12 @@
                     const listItem = document.createElement('li');
                     // Capitalize the first letter for display
                     listItem.textContent = ingredient.charAt(0).toUpperCase() + ingredient.slice(1);
-                    listItem.classList.add('flex', 'items-center', 'justify-between'); // Tailwind for flex layout
+                    listItem.classList.add('flex', 'items-center', 'justify-between', 'py-2', 'px-3', 'bg-gray-50', 'rounded-lg', 'mb-2', 'shadow-sm'); // Tailwind for flex layout and styling
 
                     // Add a "remove" button
                     const removeButton = document.createElement('span');
                     removeButton.textContent = 'X';
-                    removeButton.classList.add('remove-btn');
+                    removeButton.classList.add('remove-btn', 'ml-3', 'cursor-pointer', 'bg-red-500', 'text-white', 'rounded-full', 'w-6', 'h-6', 'flex', 'items-center', 'justify-center', 'text-xs', 'font-bold', 'hover:bg-red-600', 'transition');
                     removeButton.title = `Fjern ${ingredient}`; // Accessibility
                     removeButton.addEventListener('click', (event) => {
                         event.stopPropagation(); // Prevent the click from bubbling up to listItem
@@ -236,7 +255,7 @@
                         const listItem = document.createElement('li');
                         // Capitalize the first letter for display
                         listItem.textContent = ingredient.charAt(0).toUpperCase() + ingredient.slice(1); // Capitalize first letter
-                        listItem.classList.add('ingredient-item'); // Add class for styling
+                        listItem.classList.add('ingredient-item', 'cursor-pointer', 'py-2', 'px-3', 'bg-gray-100', 'rounded-lg', 'mb-2', 'hover:bg-gray-200', 'transition'); // Add Tailwind classes
                         listItem.addEventListener('click', () => {
                             addIngredientToSelectedList(ingredient); // Add to selected list on click
                             searchInput.value = ''; // Clear search input after selection
@@ -254,29 +273,34 @@
         }
 
         /**
-         * Suggests recipes based on selected ingredients and the active meal type filter.
+         * Suggests recipes based on selected ingredients, the active meal type filter,
+         * and the new recipe search query.
          * Displays matching recipes or a "no suggested recipes" message.
          */
         function suggestRecipes() {
             recipesList.innerHTML = ''; // Clear previous recipes
             noSuggestedRecipesMessage.classList.add('hidden'); // Hide "no suggestions" message
 
-            // If no ingredients are selected and the filter is 'alle', show the default message
-            if (selectedIngredients.length === 0 && currentMealTypeFilter === 'alle') {
-                noSuggestedRecipesMessage.classList.remove('hidden');
-                noSuggestedRecipesMessage.textContent = "Legg til ingredienser for å få oppskriftsforslag.";
-                return;
+            // Update the current recipe search query
+            currentRecipeSearchQuery = recipeSearchInput.value.trim().toLowerCase();
+
+            let filteredRecipes = recipesData; // Start with all recipes
+
+            // 1. Filter by Meal Type
+            if (currentMealTypeFilter !== 'alle') {
+                filteredRecipes = filteredRecipes.filter(recipe => recipe.type === currentMealTypeFilter);
             }
 
-            let filteredRecipesByType = recipesData; // Start with all recipes
-            if (currentMealTypeFilter !== 'alle') {
-                // Filter recipes by meal type if a specific filter is active
-                filteredRecipesByType = recipesData.filter(recipe => recipe.type === currentMealTypeFilter);
+            // 2. Filter by Recipe Search Query (if any)
+            if (currentRecipeSearchQuery) {
+                filteredRecipes = filteredRecipes.filter(recipe =>
+                    recipe.name.toLowerCase().includes(currentRecipeSearchQuery)
+                );
             }
 
             let matchingRecipes = [];
 
-            filteredRecipesByType.forEach(recipe => {
+            filteredRecipes.forEach(recipe => {
                 let matchedCount = 0;
                 let missingIngredients = [];
 
@@ -288,10 +312,8 @@
                     }
                 });
 
-                // Add the recipe if it has at least one matching ingredient OR if no ingredients are selected but a filter is active
-                // This logic ensures that if you select a filter (e.g., "Middag") and have no ingredients,
-                // it will still show all "Middag" recipes.
-                if (matchedCount > 0 || (selectedIngredients.length === 0 && currentMealTypeFilter !== 'alle')) {
+                // Add the recipe if it has at least one matching ingredient OR if no ingredients are selected but a filter is active OR if no ingredients are selected and no filter is active, but there's a recipe search query
+                if (matchedCount > 0 || (selectedIngredients.length === 0 && currentMealTypeFilter !== 'alle') || (selectedIngredients.length === 0 && !currentRecipeSearchQuery)) {
                     matchingRecipes.push({
                         name: recipe.name,
                         matched: matchedCount,
@@ -304,15 +326,30 @@
             });
 
             // If no ingredients are selected but a filter is active, show all recipes of that type
-            if (selectedIngredients.length === 0 && currentMealTypeFilter !== 'alle') {
-                matchingRecipes = filteredRecipesByType.map(recipe => ({
-                    name: recipe.name,
-                    matched: 0, // No matched ingredients
-                    total: recipe.ingredients.length,
-                    missing: recipe.ingredients, // All ingredients are missing
-                    url: recipe.url,
-                    type: recipe.type
-                }));
+            // This needs to be handled carefully with the new recipe search.
+            // If there's a recipe search query, it should take precedence in showing results.
+            if (selectedIngredients.length === 0 && !currentRecipeSearchQuery) {
+                if (currentMealTypeFilter !== 'alle') {
+                    // If only meal type filter is active, show all recipes of that type
+                    matchingRecipes = filteredRecipes.map(recipe => ({
+                        name: recipe.name,
+                        matched: 0, // No matched ingredients
+                        total: recipe.ingredients.length,
+                        missing: recipe.ingredients, // All ingredients are missing
+                        url: recipe.url,
+                        type: recipe.type
+                    }));
+                } else if (selectedIngredients.length === 0 && currentMealTypeFilter === 'alle' && !currentRecipeSearchQuery) {
+                    // If no ingredients, no meal type filter, and no recipe search, show all recipes (initial state)
+                     matchingRecipes = recipesData.map(recipe => ({
+                        name: recipe.name,
+                        matched: 0,
+                        total: recipe.ingredients.length,
+                        missing: recipe.ingredients,
+                        url: recipe.url,
+                        type: recipe.type
+                    }));
+                }
             }
 
 
@@ -322,13 +359,14 @@
             if (matchingRecipes.length > 0) {
                 matchingRecipes.forEach(recipe => {
                     const recipeCard = document.createElement('div');
-                    recipeCard.classList.add('recipe-card');
+                    recipeCard.classList.add('recipe-card', 'p-4', 'bg-white', 'rounded-lg', 'shadow-md', 'mb-3'); // Tailwind classes
 
                     // Create a link for the recipe name
                     const recipeLink = document.createElement('a');
                     recipeLink.href = recipe.url;
                     recipeLink.target = "_blank"; // Open in new tab
                     recipeLink.rel = "noopener noreferrer"; // Security for _blank
+                    recipeLink.classList.add('text-blue-600', 'hover:underline', 'font-semibold', 'text-lg'); // Tailwind classes
 
                     const recipeName = document.createElement('h3');
                     recipeName.textContent = recipe.name;
@@ -336,13 +374,13 @@
                     recipeCard.appendChild(recipeLink); // Add the link to the card
 
                     const matchedInfo = document.createElement('p');
-                    matchedInfo.classList.add('matched-ingredients');
+                    matchedInfo.classList.add('matched-ingredients', 'text-gray-700', 'text-sm', 'mt-1');
                     matchedInfo.textContent = `Du har ${recipe.matched} av ${recipe.total} ingredienser.`;
                     recipeCard.appendChild(matchedInfo);
 
                     if (recipe.missing.length > 0) {
                         const missingInfo = document.createElement('p');
-                        missingInfo.classList.add('missing-ingredients');
+                        missingInfo.classList.add('missing-ingredients', 'text-red-500', 'text-xs', 'mt-1');
                         // Capitalize first letter of each missing ingredient for display
                         missingInfo.textContent = `Mangler: ${recipe.missing.map(i => i.charAt(0).toUpperCase() + i.slice(1)).join(', ')}`;
                         recipeCard.appendChild(missingInfo);
@@ -352,7 +390,7 @@
                 });
             } else {
                 noSuggestedRecipesMessage.classList.remove('hidden');
-                noSuggestedRecipesMessage.textContent = "Ingen oppskrifter funnet med de valgte ingrediensene og filteret.";
+                noSuggestedRecipesMessage.textContent = "Ingen oppskrifter funnet med de valgte ingrediensene, filteret eller søket ditt.";
             }
         }
 
@@ -371,10 +409,14 @@
         });
 
 
-        // Add event listener for click on the search button
+        // Add event listener for click on the ingredient search button
         searchButton.addEventListener('click', performSearch);
+        // Add event listener for input on the ingredient search field
         searchInput.addEventListener('input', performSearch);
         
+        // NEW: Add event listener for input on the recipe search field
+        recipeSearchInput.addEventListener('input', suggestRecipes);
+
 
         // New: Add event listener for the "Clear All" button
         clearSelectedButton.addEventListener('click', clearSelectedIngredients);
