@@ -1,4 +1,425 @@
-    /* Custom styles for the modal and loading overlay */
+/* Importer 'Inter' skrifttypen fra Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* --- Globale stiler --- */
+body {
+    background-color: #eff6ff; /* tilsvarer bg-blue-50 */
+    min-height: 100vh; /* tilsvarer min-h-screen */
+    display: flex; /* tilsvarer flex */
+    flex-direction: column; /* tilsvarer flex-col */
+    font-family: 'Inter', sans-serif; /* Bruker den importerte fonten */
+    margin: 0; /* Fjerner standard margin */
+    padding: 0; /* Fjerner standard padding */
+    color: #333; /* Standard tekstfarge for bedre lesbarhet */
+}
+
+/* --- Header stiler (#mainHeader) --- */
+#mainHeader {
+    background-color: #ffffff; /* tilsvarer bg-white */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* tilsvarer shadow-md */
+    padding: 1rem 1.5rem; /* tilsvarer py-4 px-6 */
+    display: flex; /* tilsvarer flex */
+    flex-direction: column; /* tilsvarer flex-col */
+    align-items: center; /* tilsvarer items-center */
+    justify-content: space-between; /* tilsvarer justify-between */
+    border-bottom-left-radius: 0.5rem; /* tilsvarer rounded-b-lg */
+    border-bottom-right-radius: 0.5rem; /* tilsvarer rounded-b-lg */
+    width: 100%; /* Sikrer at headeren tar full bredde */
+}
+
+/* Responsive stiler for header på små skjermer (sm) */
+@media (min-width: 640px) {
+    #mainHeader {
+        flex-direction: row; /* tilsvarer sm:flex-row */
+    }
+}
+
+/* Responsive stiler for header på medium skjermer (md) */
+@media (min-width: 768px) {
+    #mainHeader {
+        padding-left: 2rem; /* tilsvarer md:px-8 */
+        padding-right: 2rem; /* tilsvarer md:px-8 */
+    }
+}
+
+/* Responsive stiler for header på store skjermer (lg) */
+@media (min-width: 1024px) {
+    #mainHeader {
+        padding-left: 3rem; /* tilsvarer lg:px-12 */
+        padding-right: 3rem; /* tilsvarer lg:px-12 */
+    }
+}
+
+/* Stiler for logo-bildet inni headeren */
+#mainHeader img {
+    height: 6rem; /* tilsvarer h-24 */
+    width: 6rem; /* tilsvarer w-24 */
+    border-radius: 0.5rem; /* tilsvarer rounded-lg */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* tilsvarer shadow-md */
+    margin-bottom: 1rem; /* tilsvarer mb-4 */
+}
+
+/* Responsive stiler for logo på små skjermer (sm) */
+@media (min-width: 640px) {
+    #mainHeader img {
+        margin-bottom: 0; /* tilsvarer sm:mb-0 */
+        margin-right: 1.5rem; /* tilsvarer sm:mr-6 */
+    }
+}
+
+/* Stiler for tittelteksten inni headeren */
+#mainHeader h1 {
+    font-size: 1.875rem; /* tilsvarer text-3xl */
+    line-height: 2.25rem; /* tilsvarer text-3xl */
+    font-weight: 700; /* tilsvarer font-bold */
+    text-align: center; /* tilsvarer text-center */
+    color: #1d4ed8; /* tilsvarer text-blue-700 */
+    margin-bottom: 1rem; /* tilsvarer mb-4 */
+}
+
+/* Responsive stiler for tittel på store skjermer (lg) */
+@media (min-width: 1024px) {
+    #mainHeader h1 {
+        text-align: left; /* tilsvarer lg:text-left */
+    }
+}
+
+/* --- Navigasjonsstiler --- */
+#mainHeader nav {
+    width: 100%; /* tilsvarer w-full */
+}
+
+/* Responsive stiler for navigasjon på små skjermer (sm) */
+@media (min-width: 640px) {
+    #mainHeader nav {
+        width: auto; /* tilsvarer sm:w-auto */
+    }
+}
+
+#mainHeader nav ul {
+    display: flex; /* tilsvarer flex */
+    flex-wrap: wrap; /* tilsvarer flex-wrap */
+    justify-content: center; /* tilsvarer justify-center */
+    list-style: none; /* Fjerner standard punktmerker */
+    padding: 0; /* Fjerner standard padding */
+    margin: 0; /* Fjerner standard margin */
+    gap: 1rem; /* tilsvarer space-x-4 (horisontal avstand) */
+}
+
+/* Responsive stiler for navigasjonsliste på små skjermer (sm) */
+@media (min-width: 640px) {
+    #mainHeader nav ul {
+        justify-content: flex-end; /* tilsvarer sm:justify-end */
+        gap: 1.5rem; /* tilsvarer sm:space-x-6 */
+    }
+}
+
+/* Stiler for navigasjonslenker */
+#mainHeader nav ul li a {
+    color: #1d4ed8; /* tilsvarer text-blue-700 */
+    font-weight: 500; /* tilsvarer font-medium */
+    transition-property: color, background-color; /* tilsvarer transition */
+    transition-duration: 300ms; /* tilsvarer duration-300 */
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* tilsvarer ease-in-out */
+    padding: 0.5rem 0.75rem; /* tilsvarer px-3 py-2 */
+    border-radius: 0.375rem; /* tilsvarer rounded-md */
+    text-decoration: none; /* Fjerner understreking */
+    display: block; /* Gjør hele padding-området klikkbart */
+}
+
+/* Hover-stiler for navigasjonslenker */
+#mainHeader nav ul li a:hover {
+    color: #1e40af; /* tilsvarer hover:text-blue-900 */
+    background-color: #dbeafe; /* tilsvarer hover:bg-blue-100 */
+}
+
+/* --- Hovedinnholdsstiler (main) --- */
+main {
+    flex-grow: 1; /* tilsvarer flex-grow */
+    width: 100%; /* For å sikre at container mx-auto fungerer */
+    max-width: 1280px; /* Standard for Tailwind's container på store skjermer */
+    margin-left: auto; /* tilsvarer mx-auto */
+    margin-right: auto; /* tilsvarer mx-auto */
+    padding: 1.5rem; /* tilsvarer p-6 */
+}
+
+/* Responsive stiler for main på medium skjermer (md) */
+@media (min-width: 768px) {
+    main {
+        padding: 2rem; /* tilsvarer md:p-8 */
+    }
+}
+
+/* Responsive stiler for main på store skjermer (lg) */
+@media (min-width: 1024px) {
+    main {
+        padding: 3rem; /* tilsvarer lg:p-12 */
+    }
+}
+
+/* --- Velkomstseksjon stiler (.welcome-section) --- */
+.welcome-section {
+    background-color: #ffffff; /* tilsvarer bg-white */
+    padding: 2rem; /* tilsvarer p-8 */
+    border-radius: 0.5rem; /* tilsvarer rounded-lg */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* tilsvarer shadow-xl */
+    text-align: center; /* tilsvarer text-center */
+}
+
+/* Stiler for h2-tittelen i velkomstseksjonen */
+.welcome-section h2 {
+    font-size: 2.25rem; /* tilsvarer text-4xl */
+    line-height: 2.5rem; /* tilsvarer text-4xl */
+    font-weight: 800; /* tilsvarer font-extrabold */
+    color: #1d4ed8; /* tilsvarer text-blue-700 */
+    margin-bottom: 1.5rem; /* tilsvarer mb-6 */
+}
+
+/* Stiler for paragrafen i velkomstseksjonen */
+.welcome-section p {
+    font-size: 1.125rem; /* tilsvarer text-lg */
+    line-height: 1.75rem; /* tilsvarer leading-relaxed */
+    color: #374151; /* tilsvarer text-gray-700 */
+    margin-bottom: 2rem; /* tilsvarer mb-8 */
+}
+
+/* --- Knappestil for "Bruk Mathjelperen" (.button) --- */
+.button {
+    display: inline-block; /* Gjør lenken til et blokk-lignende element for padding */
+    background-color: #2563eb; /* tilsvarer bg-blue-600 */
+    color: #ffffff; /* tilsvarer text-white */
+    font-weight: 700; /* tilsvarer font-bold */
+    padding: 0.75rem 2rem; /* tilsvarer py-3 px-8 */
+    border-radius: 9999px; /* tilsvarer rounded-full */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* tilsvarer shadow-lg */
+    transform: scale(1); /* tilsvarer transform (initial state for transition) */
+    transition-property: background-color, transform; /* tilsvarer transition */
+    transition-duration: 300ms; /* tilsvarer duration-300 */
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* tilsvarer ease-in-out */
+    border: none; /* Fjerner standard knappekant */
+    cursor: pointer; /* Indikerer klikkbar */
+    text-decoration: none; /* Fjerner understrek for lenker */
+}
+
+/* Hover-stiler for knappen */
+.button:hover {
+    background-color: #1e40af; /* tilsvarer hover:bg-blue-700 */
+    transform: scale(1.05); /* tilsvarer hover:scale-105 */
+}
+
+/* --- Funksjonskort seksjon stiler (.feature-cards-section) --- */
+.feature-cards-section {
+    margin-top: 3rem; /* tilsvarer mt-12 */
+    display: grid; /* tilsvarer grid */
+    grid-template-columns: repeat(1, minmax(0, 1fr)); /* tilsvarer grid-cols-1 */
+    gap: 2rem; /* tilsvarer gap-8 */
+}
+
+/* Responsive stiler for feature-kort seksjonen på medium skjermer (md) */
+@media (min-width: 768px) {
+    .feature-cards-section {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* tilsvarer md:grid-cols-2 */
+    }
+}
+
+/* Responsive stiler for feature-kort seksjonen på store skjermer (lg) */
+@media (min-width: 1024px) {
+    .feature-cards-section {
+        grid-template-columns: repeat(3, minmax(0, 1fr)); /* tilsvarer lg:grid-cols-3 */
+    }
+}
+
+/* Stiler for individuelle feature-kort (.feature-card) */
+.feature-card {
+    background-color: #ffffff; /* tilsvarer bg-white */
+    padding: 1.5rem; /* tilsvarer p-6 */
+    border-radius: 0.5rem; /* tilsvarer rounded-lg */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* tilsvarer shadow-md */
+    transition-property: box-shadow, transform; /* Legg til transform for hover-effekt */
+    transition-duration: 300ms; /* tilsvarer duration-300 */
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* tilsvarer ease-in-out */
+    text-align: center; /* Midtstill tekst i kortene */
+}
+
+/* Hover-stiler for feature-kort */
+.feature-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* tilsvarer hover:shadow-xl */
+    transform: translateY(-5px); /* Liten løft-effekt ved hover */
+}
+
+/* Stiler for h3-tittelen i feature-kortene */
+.feature-card h3 {
+    font-size: 1.5rem; /* tilsvarer text-2xl */
+    line-height: 2rem; /* tilsvarer text-2xl */
+    font-weight: 600; /* tilsvarer font-semibold */
+    color: #2563eb; /* tilsvarer text-blue-600 */
+    margin-bottom: 1rem; /* tilsvarer mb-4 */
+}
+
+/* Stiler for paragrafen i feature-kortene */
+.feature-card p {
+    color: #4b5563; /* tilsvarer text-gray-600 */
+}
+
+/* --- Bunntekst stiler (footer) --- */
+footer {
+    background-color: #1e3a8a; /* tilsvarer bg-blue-800 */
+    color: #ffffff; /* tilsvarer text-white */
+    padding: 1.5rem; /* tilsvarer py-6 px-6 */
+    margin-top: 3rem; /* tilsvarer mt-12 */
+    border-top-left-radius: 0.5rem; /* tilsvarer rounded-t-lg */
+    border-top-right-radius: 0.5rem; /* tilsvarer rounded-t-lg */
+    text-align: center; /* Midtstill all tekst i footer */
+}
+
+/* Responsive stiler for footer på medium skjermer (md) */
+@media (min-width: 768px) {
+    footer {
+        padding-left: 2rem; /* tilsvarer md:px-8 */
+        padding-right: 2rem; /* tilsvarer md:px-8 */
+    }
+}
+
+/* Responsive stiler for footer på store skjermer (lg) */
+@media (min-width: 1024px) {
+    footer {
+        padding-left: 3rem; /* tilsvarer lg:px-12 */
+        padding-right: 3rem; /* tilsvarer lg:px-12 */
+    }
+}
+
+/* Stiler for lenkene i footer */
+.footer-links {
+    display: flex; /* tilsvarer flex */
+    justify-content: center; /* tilsvarer justify-center */
+    gap: 1rem; /* tilsvarer space-x-4 */
+    margin-top: 0.75rem; /* tilsvarer mt-3 */
+    flex-wrap: wrap; /* Tillat innpakning på små skjermer */
+}
+
+.footer-links a {
+    color: #ffffff; /* tilsvarer text-white */
+    transition-property: color; /* tilsvarer transition */
+    transition-duration: 300ms; /* tilsvarer duration-300 */
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* tilsvarer ease-in-out */
+    text-decoration: none; /* Fjerner understreking */
+}
+
+/* Hover-stiler for lenkene i footer */
+.footer-links a:hover {
+    color: #bfdbfe; /* tilsvarer hover:text-blue-200 */
+}
+
+/* Stiler for skillelinjen (span) i footer */
+.footer-links span {
+    color: #93c5fd; /* tilsvarer text-blue-300 */
+}
+
+/* --- Mathjelper-relaterte stiler (for eksempel for mathjelper/ index.html) --- */
+
+/* Stiler for ingrediens-elementer og fjern-knapp */
+.ingredient-item {
+    padding: 0.5rem 0.75rem;
+    background-color: #f3f4f6; /* bg-gray-100 */
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.ingredient-item:hover {
+    background-color: #e5e7eb; /* hover:bg-gray-200 */
+}
+
+.remove-btn {
+    background-color: #ef4444; /* bg-red-500 */
+    color: white;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.875rem; /* text-sm */
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.remove-btn:hover {
+    background-color: #dc2626; /* bg-red-600 */
+}
+
+/* Stiler for oppskriftskort */
+.recipe-card {
+    background-color: #f9fafb; /* bg-gray-50 */
+    border-radius: 0.75rem; /* rounded-xl */
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* shadow-sm */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recipe-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
+}
+
+.recipe-card h3 {
+    font-size: 1.25rem; /* text-lg */
+    font-weight: 600; /* font-semibold */
+    color: #1f2937; /* text-gray-800 */
+    margin-bottom: 0.5rem;
+}
+
+.recipe-card h3 a {
+    color: #2563eb; /* text-blue-600 */
+    text-decoration: none;
+}
+
+.recipe-card h3 a:hover {
+    text-decoration: underline;
+}
+
+.recipe-card .matched-ingredients {
+    color: #374151; /* text-gray-700 */
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.recipe-card .missing-ingredients {
+    color: #ef4444; /* text-red-500 */
+    font-size: 0.85rem;
+}
+
+/* Stiler for filter-knapper */
+.filter-button {
+    background-color: #e5e7eb; /* bg-gray-200 */
+    color: #374151; /* text-gray-700 */
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500; /* font-medium */
+    transition: background-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+}
+
+.filter-button:hover {
+    background-color: #d1d5db; /* bg-gray-300 */
+}
+
+.filter-button.active {
+    background-color: #2563eb; /* bg-blue-600 */
+    color: white;
+}
+
+.filter-button.active:hover {
+    background-color: #1d4ed8; /* hover:bg-blue-700 */
+}
+
+/* --- Modale og laste-overlay stiler --- */
+
 .loading-overlay {
     position: fixed;
     top: 0;
@@ -86,463 +507,4 @@
 
 .modal-content button:hover {
     background-color: #1d4ed8; /* hover:bg-blue-700 */
-}
-/* Importer 'Inter' skrifttypen fra Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
-/* Generelle stiler for body */
-body {
-    background-color: #eff6ff; /* tilsvarer bg-blue-50 */
-    min-height: 100vh; /* tilsvarer min-h-screen */
-    display: flex; /* tilsvarer flex */
-    flex-direction: column; /* tilsvarer flex-col */
-    font-family: 'Inter', sans-serif; /* Bruker den importerte fonten */
-    margin: 0; /* Fjerner standard margin */
-    padding: 0; /* Fjerner standard padding */
-}
-
-/* Stiler for hovedheader (#mainHeader) */
-#mainHeader {
-    background-color: #ffffff; /* tilsvarer bg-white */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* tilsvarer shadow-md */
-    padding-top: 1rem; /* tilsvarer py-4 */
-    padding-bottom: 1rem; /* tilsvarer py-4 */
-    padding-left: 1.5rem; /* tilsvarer px-6 */
-    padding-right: 1.5rem; /* tilsvarer px-6 */
-    display: flex; /* tilsvarer flex */
-    flex-direction: column; /* tilsvarer flex-col */
-    align-items: center; /* tilsvarer items-center */
-    justify-content: space-between; /* tilsvarer justify-between */
-    border-bottom-left-radius: 0.5rem; /* tilsvarer rounded-b-lg */
-    border-bottom-right-radius: 0.5rem; /* tilsvarer rounded-b-lg */
-    width: 100%; /* Sikrer at headeren tar full bredde */
-}
-
-/* Responsive stiler for header på små skjermer (sm) */
-@media (min-width: 640px) {
-    #mainHeader {
-        flex-direction: row; /* tilsvarer sm:flex-row */
-    }
-}
-
-/* Responsive stiler for header på medium skjermer (md) */
-@media (min-width: 768px) {
-    #mainHeader {
-        padding-left: 2rem; /* tilsvarer md:px-8 */
-        padding-right: 2rem; /* tilsvarer md:px-8 */
-    }
-}
-
-/* Responsive stiler for header på store skjermer (lg) */
-@media (min-width: 1024px) {
-    #mainHeader {
-        padding-left: 3rem; /* tilsvarer lg:px-12 */
-        padding-right: 3rem; /* tilsvarer lg:px-12 */
-    }
-}
-
-/* Stiler for logo-bildet inni headeren */
-#mainHeader img {
-    height: 6rem; /* tilsvarer h-24 */
-    width: 6rem; /* tilsvarer w-24 */
-    border-radius: 0.5rem; /* tilsvarer rounded-lg */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* tilsvarer shadow-md */
-    margin-bottom: 1rem; /* tilsvarer mb-4 */
-}
-
-/* Responsive stiler for logo på små skjermer (sm) */
-@media (min-width: 640px) {
-    #mainHeader img {
-        margin-bottom: 0; /* tilsvarer sm:mb-0 */
-        margin-right: 1.5rem; /* tilsvarer sm:mr-6 */
-    }
-}
-
-/* Stiler for tittelteksten inni headeren */
-#mainHeader h1 {
-    font-size: 1.875rem; /* tilsvarer text-3xl */
-    line-height: 2.25rem; /* tilsvarer text-3xl */
-    font-weight: 700; /* tilsvarer font-bold */
-    text-align: center; /* tilsvarer text-center */
-    color: #1d4ed8; /* tilsvarer text-blue-700 */
-    margin-bottom: 1rem; /* tilsvarer mb-4 */
-}
-
-/* Responsive stiler for tittel på store skjermer (lg) */
-@media (min-width: 1024px) {
-    #mainHeader h1 {
-        text-align: left; /* tilsvarer lg:text-left */
-    }
-}
-
-/* Stiler for navigasjonsmenyen */
-#mainHeader nav {
-    width: 100%; /* tilsvarer w-full */
-}
-
-/* Responsive stiler for navigasjon på små skjermer (sm) */
-@media (min-width: 640px) {
-    #mainHeader nav {
-        width: auto; /* tilsvarer sm:w-auto */
-    }
-}
-
-#mainHeader nav ul {
-    display: flex; /* tilsvarer flex */
-    flex-wrap: wrap; /* tilsvarer flex-wrap */
-    justify-content: center; /* tilsvarer justify-center */
-    list-style: none; /* Fjerner standard punktmerker */
-    padding: 0; /* Fjerner standard padding */
-    margin: 0; /* Fjerner standard margin */
-    gap: 1rem; /* tilsvarer space-x-4 (horisontal avstand) */
-}
-
-/* Responsive stiler for navigasjonsliste på små skjermer (sm) */
-@media (min-width: 640px) {
-    #mainHeader nav ul {
-        justify-content: flex-end; /* tilsvarer sm:justify-end */
-        gap: 1.5rem; /* tilsvarer sm:space-x-6 */
-    }
-}
-
-/* Stiler for navigasjonslenker */
-#mainHeader nav ul li a {
-    color: #1d4ed8; /* tilsvarer text-blue-700 */
-    font-weight: 500; /* tilsvarer font-medium */
-    transition-property: color, background-color; /* tilsvarer transition */
-    transition-duration: 300ms; /* tilsvarer duration-300 */
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* tilsvarer ease-in-out */
-    padding: 0.5rem 0.75rem; /* tilsvarer px-3 py-2 */
-    border-radius: 0.375rem; /* tilsvarer rounded-md */
-    text-decoration: none; /* Fjerner understreking */
-    display: block; /* Gjør hele padding-området klikkbart */
-}
-
-/* Hover-stiler for navigasjonslenker */
-#mainHeader nav ul li a:hover {
-    color: #1e40af; /* tilsvarer hover:text-blue-900 */
-    background-color: #dbeafe; /* tilsvarer hover:bg-blue-100 */
-}
-
-/* Stiler for hovedinnholdsseksjonen (main) */
-main {
-    flex-grow: 1; /* tilsvarer flex-grow */
-    width: 100%; /* For å sikre at container mx-auto fungerer */
-    max-width: 1280px; /* Standard for Tailwind's container på store skjermer */
-    margin-left: auto; /* tilsvarer mx-auto */
-    margin-right: auto; /* tilsvarer mx-auto */
-    padding: 1.5rem; /* tilsvarer p-6 */
-}
-
-/* Responsive stiler for main på medium skjermer (md) */
-@media (min-width: 768px) {
-    main {
-        padding: 2rem; /* tilsvarer md:p-8 */
-    }
-}
-
-/* Responsive stiler for main på store skjermer (lg) */
-@media (min-width: 1024px) {
-    main {
-        padding: 3rem; /* tilsvarer lg:p-12 */
-    }
-}
-
-/* Stiler for den første innholdsseksjonen (Velkomstseksjonen) */
-main section:first-of-type {
-    background-color: #ffffff; /* tilsvarer bg-white */
-    padding: 2rem; /* tilsvarer p-8 */
-    border-radius: 0.5rem; /* tilsvarer rounded-lg */
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* tilsvarer shadow-xl */
-    text-align: center; /* tilsvarer text-center */
-}
-
-/* Stiler for h2-tittelen i velkomstseksjonen */
-main section:first-of-type h2 {
-    font-size: 2.25rem; /* tilsvarer text-4xl */
-    line-height: 2.5rem; /* tilsvarer text-4xl */
-    font-weight: 800; /* tilsvarer font-extrabold */
-    color: #1d4ed8; /* tilsvarer text-blue-700 */
-    margin-bottom: 1.5rem; /* tilsvarer mb-6 */
-}
-
-/* Stiler for paragrafen i velkomstseksjonen */
-main section:first-of-type p {
-    font-size: 1.125rem; /* tilsvarer text-lg */
-    line-height: 1.75rem; /* tilsvarer leading-relaxed */
-    color: #374151; /* tilsvarer text-gray-700 */
-    margin-bottom: 2rem; /* tilsvarer mb-8 */
-}
-
-/* Stiler for knappen i velkomstseksjonen */
-main section:first-of-type button {
-    background-color: #2563eb; /* tilsvarer bg-blue-600 */
-    color: #ffffff; /* tilsvarer text-white */
-    font-weight: 700; /* tilsvarer font-bold */
-    padding: 0.75rem 2rem; /* tilsvarer py-3 px-8 */
-    border-radius: 9999px; /* tilsvarer rounded-full */
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* tilsvarer shadow-lg */
-    transform: scale(1); /* tilsvarer transform (initial state for transition) */
-    transition-property: background-color, transform; /* tilsvarer transition */
-    transition-duration: 300ms; /* tilsvarer duration-300 */
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* tilsvarer ease-in-out */
-    border: none; /* Fjerner standard knappekant */
-    cursor: pointer; /* Indikerer klikkbar */
-}
-
-/* Hover-stiler for knappen */
-main section:first-of-type button:hover {
-    background-color: #1e40af; /* tilsvarer hover:bg-blue-700 */
-    transform: scale(1.05); /* tilsvarer hover:scale-105 */
-}
-
-/* Stiler for seksjonen med feature-kort */
-main section:last-of-type {
-    margin-top: 3rem; /* tilsvarer mt-12 */
-    display: grid; /* tilsvarer grid */
-    grid-template-columns: repeat(1, minmax(0, 1fr)); /* tilsvarer grid-cols-1 */
-    gap: 2rem; /* tilsvarer gap-8 */
-}
-
-/* Responsive stiler for feature-kort seksjonen på medium skjermer (md) */
-@media (min-width: 768px) {
-    main section:last-of-type {
-        grid-template-columns: repeat(2, minmax(0, 1fr)); /* tilsvarer md:grid-cols-2 */
-    }
-}
-
-/* Responsive stiler for feature-kort seksjonen på store skjermer (lg) */
-@media (min-width: 1024px) {
-    main section:last-of-type {
-        grid-template-columns: repeat(3, minmax(0, 1fr)); /* tilsvarer lg:grid-cols-3 */
-    }
-}
-
-/* Stiler for individuelle feature-kort */
-main section:last-of-type > div {
-    background-color: #ffffff; /* tilsvarer bg-white */
-    padding: 1.5rem; /* tilsvarer p-6 */
-    border-radius: 0.5rem; /* tilsvarer rounded-lg */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* tilsvarer shadow-md */
-    transition-property: box-shadow; /* tilsvarer transition */
-    transition-duration: 300ms; /* tilsvarer duration-300 */
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* tilsvarer ease-in-out */
-}
-
-/* Hover-stiler for feature-kort */
-main section:last-of-type > div:hover {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* tilsvarer hover:shadow-xl */
-}
-
-/* Stiler for h3-tittelen i feature-kortene */
-main section:last-of-type > div h3 {
-    font-size: 1.5rem; /* tilsvarer text-2xl */
-    line-height: 2rem; /* tilsvarer text-2xl */
-    font-weight: 600; /* tilsvarer font-semibold */
-    color: #2563eb; /* tilsvarer text-blue-600 */
-    margin-bottom: 1rem; /* tilsvarer mb-4 */
-}
-
-/* Stiler for paragrafen i feature-kortene */
-main section:last-of-type > div p {
-    color: #4b5563; /* tilsvarer text-gray-600 */
-}
-
-/* Stiler for footer-seksjonen */
-footer {
-    background-color: #1e3a8a; /* tilsvarer bg-blue-800 */
-    color: #ffffff; /* tilsvarer text-white */
-    padding-top: 1.5rem; /* tilsvarer py-6 */
-    padding-bottom: 1.5rem; /* tilsvarer py-6 */
-    padding-left: 1.5rem; /* tilsvarer px-6 */
-    padding-right: 1.5rem; /* tilsvarer px-6 */
-    margin-top: 3rem; /* tilsvarer mt-12 */
-    border-top-left-radius: 0.5rem; /* tilsvarer rounded-t-lg */
-    border-top-right-radius: 0.5rem; /* tilsvarer rounded-t-lg */
-}
-
-/* Responsive stiler for footer på medium skjermer (md) */
-@media (min-width: 768px) {
-    footer {
-        padding-left: 2rem; /* tilsvarer md:px-8 */
-        padding-right: 2rem; /* tilsvarer md:px-8 */
-    }
-}
-
-/* Responsive stiler for footer på store skjermer (lg) */
-@media (min-width: 1024px) {
-    footer {
-        padding-left: 3rem; /* tilsvarer lg:px-12 */
-        padding-right: 3rem; /* tilsvarer lg:px-12 */
-    }
-}
-
-/* Stiler for containeren inni footer */
-footer div.container {
-    width: 100%; /* For å sikre at container mx-auto fungerer */
-    max-width: 1280px; /* Standard for Tailwind's container */
-    margin-left: auto; /* tilsvarer mx-auto */
-    margin-right: auto; /* tilsvarer mx-auto */
-    text-align: center; /* tilsvarer text-center */
-}
-
-/* Stiler for lenkene i footer */
-footer div.container div.flex {
-    display: flex; /* tilsvarer flex */
-    justify-content: center; /* tilsvarer justify-center */
-    gap: 1rem; /* tilsvarer space-x-4 */
-    margin-top: 0.75rem; /* tilsvarer mt-3 */
-}
-
-footer div.container div.flex a {
-    color: #ffffff; /* tilsvarer text-white */
-    transition-property: color; /* tilsvarer transition */
-    transition-duration: 300ms; /* tilsvarer duration-300 */
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* tilsvarer ease-in-out */
-    text-decoration: none; /* Fjerner understreking */
-}
-
-/* Hover-stiler for lenkene i footer */
-footer div.container div.flex a:hover {
-    color: #bfdbfe; /* tilsvarer hover:text-blue-200 */
-}
-
-/* Stiler for skillelinjen (span) i footer */
-footer div.container div.flex span {
-    color: #93c5fd; /* tilsvarer text-blue-300 */
-}
-
-        /* Styles for ingredient items and remove button */
-.ingredient-item {
-    padding: 0.5rem 0.75rem;
-    background-color: #f3f4f6; /* bg-gray-100 */
-    border-radius: 0.5rem;
-    margin-bottom: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.ingredient-item:hover {
-    background-color: #e5e7eb; /* hover:bg-gray-200 */
-}
-
-.remove-btn {
-    background-color: #ef4444; /* bg-red-500 */
-    color: white;
-    border-radius: 50%;
-    width: 1.5rem;
-    height: 1.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.875rem; /* text-sm */
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.remove-btn:hover {
-    background-color: #dc2626; /* bg-red-600 */
-}
-
-        /* Styles for recipe cards */
-.recipe-card {
-    background-color: #f9fafb; /* bg-gray-50 */
-    border-radius: 0.75rem; /* rounded-xl */
-    padding: 1rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* shadow-sm */
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.recipe-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
-}
-
-.recipe-card h3 {
-    font-size: 1.25rem; /* text-lg */
-    font-weight: 600; /* font-semibold */
-    color: #1f2937; /* text-gray-800 */
-    margin-bottom: 0.5rem;
-}
-
-.recipe-card h3 a {
-    color: #2563eb; /* text-blue-600 */
-    text-decoration: none;
-}
-
-.recipe-card h3 a:hover {
-    text-decoration: underline;
-}
-
-.recipe-card .matched-ingredients {
-    color: #374151; /* text-gray-700 */
-    font-size: 0.9rem;
-    margin-bottom: 0.25rem;
-}
-
-.recipe-card .missing-ingredients {
-    color: #ef4444; /* text-red-500 */
-    font-size: 0.85rem;
-}
-
-        /* Styles for filter buttons */
-.filter-button {
-    background-color: #e5e7eb; /* bg-gray-200 */
-    color: #374151; /* text-gray-700 */
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    font-weight: 500; /* font-medium */
-    transition: background-color 0.2s ease, color 0.2s ease;
-    cursor: pointer;
-}
-
-.filter-button:hover {
-    background-color: #d1d5db; /* bg-gray-300 */
-}
-
-.filter-button.active {
-    background-color: #2563eb; /* bg-blue-600 */
-    color: white;
-}
-
-        .filter-button.active:hover {
-            background-color: #1d4ed8; /* hover:bg-blue-700 */
-}
-
-        /* General layout adjustments */
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f3f4f6; /* bg-gray-100 */
-    padding: 1rem;
-}
-
-.main-content-area {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem;
-}
-
-@media (min-width: 1024px) {
-    .main-content-area {
-        flex-direction: row;
-    }
-}
-
-.de-godes-mat-logo {
-    height: 6rem; /* 96px */
-    width: 6rem;  /* 96px */
-    border-radius: 0.5rem; /* 8px */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-    margin-bottom: 1rem; /* 16px */
-}
-
-@media (min-width: 1024px) {
-    .de-godes-mat-logo {
-        margin-bottom: 0;
-        margin-right: 1.5rem; /* 24px */
-    }
 }
