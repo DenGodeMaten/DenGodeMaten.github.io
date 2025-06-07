@@ -15,7 +15,7 @@ body {
 
 /* --- Header stiler (#mainHeader) --- */
 #mainHeader {
-    background-color: #ffffff; /* tilsvarer bg-white */
+    background-color: blue; /* tilsvarer bg-white */
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* tilsvarer shadow-md */
     padding: 1rem 1.5rem; /* tilsvarer py-4 px-6 */
     display: flex; /* tilsvarer flex */
@@ -73,14 +73,14 @@ body {
     line-height: 2.25rem; /* tilsvarer text-3xl */
     font-weight: 700; /* tilsvarer font-bold */
     text-align: center; /* tilsvarer text-center */
-    color: #1d4ed8; /* tilsvarer text-blue-700 */
+    color: white; /* tilsvarer text-blue-700 */
     margin-bottom: 1rem; /* tilsvarer mb-4 */
 }
 
 /* Responsive stiler for tittel på store skjermer (lg) */
 @media (min-width: 1024px) {
     #mainHeader h1 {
-        text-align: left; /* tilsvarer lg:text-left */
+        text-align: center; /* tilsvarer lg:text-left */
     }
 }
 
@@ -109,14 +109,14 @@ body {
 /* Responsive stiler for navigasjonsliste på små skjermer (sm) */
 @media (min-width: 640px) {
     #mainHeader nav ul {
-        justify-content: flex-end; /* tilsvarer sm:justify-end */
+        justify-content: left; /* tilsvarer sm:justify-end */
         gap: 1.5rem; /* tilsvarer sm:space-x-6 */
     }
 }
 
 /* Stiler for navigasjonslenker */
 #mainHeader nav ul li a {
-    color: #1d4ed8; /* tilsvarer text-blue-700 */
+    color: #ffffff; /* tilsvarer text-blue-700 */
     font-weight: 500; /* tilsvarer font-medium */
     transition-property: color, background-color; /* tilsvarer transition */
     transition-duration: 300ms; /* tilsvarer duration-300 */
@@ -129,8 +129,8 @@ body {
 
 /* Hover-stiler for navigasjonslenker */
 #mainHeader nav ul li a:hover {
-    color: #1e40af; /* tilsvarer hover:text-blue-900 */
-    background-color: #dbeafe; /* tilsvarer hover:bg-blue-100 */
+    color: #ffffff; /* tilsvarer hover:text-blue-900 */
+    background-color: #2d2dff; /* tilsvarer hover:bg-blue-100 */
 }
 
 /* --- Hovedinnholdsstiler (main) --- */
