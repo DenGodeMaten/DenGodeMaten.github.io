@@ -7,6 +7,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -14,7 +16,7 @@ jobs:
       - name: Generate the sitemap.xml
         uses: cicirello/generate-sitemap@v1
         with:
-          base-url-path: https://dengodematen.github.io/
+          base-url-path: https://dengodematen.github.io/ 
           include-html: true 
           additional-extensions: json
 
