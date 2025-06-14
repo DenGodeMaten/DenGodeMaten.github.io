@@ -1,0 +1,14 @@
+{
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "chrome",
+        "request": "launch",
+        "name": "Launch Localhost",
+        "url": "http://localhost:5500",
+        "webRoot": "${workspaceFolder}"
+      }
+    ]
+  }
+}

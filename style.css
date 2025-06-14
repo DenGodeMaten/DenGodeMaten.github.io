@@ -3,316 +3,324 @@
 
 /* --- Globale stiler --- */
 body {
-    background-color: #eff6ff; /* tilsvarer bg-blue-50 */
-    min-height: 100vh; /* tilsvarer min-h-screen */
-    display: flex; /* tilsvarer flex */
-    flex-direction: column; /* tilsvarer flex-col */
-    font-family: 'Inter', sans-serif; /* Bruker den importerte fonten */
-    margin: 0; /* Fjerner standard margin */
-    padding: 0; /* Fjerner standard padding */
-    color: #333; /* Standard tekstfarge for bedre lesbarhet */
+    background-color: #eff6ff; /* bg-blue-50 */
+    min-height: 100vh; /* min-h-screen */
+    display: flex; /* flex */
+    flex-direction: column; /* flex-col */
+    font-family: 'Inter', sans-serif; /* font-inter */
+    margin: 0;
+    padding: 0;
+    color: #374151; /* text-gray-700 */
 }
 
-/* --- Header stiler (#mainHeader) --- */
-#mainHeader {
-    background-color: blue; /* tilsvarer bg-white */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* tilsvarer shadow-md */
-    padding: 1rem 1.5rem; /* tilsvarer py-4 px-6 */
-    display: flex; /* tilsvarer flex */
-    flex-direction: column; /* tilsvarer flex-col */
-    align-items: center; /* tilsvarer items-center */
-    justify-content: space-between; /* tilsvarer justify-between */
-    border-bottom-left-radius: 0.5rem; /* tilsvarer rounded-b-lg */
-    border-bottom-right-radius: 0.5rem; /* tilsvarer rounded-b-lg */
-    width: 100%; /* Sikrer at headeren tar full bredde */
+/* --- Header stiler --- */
+.main-header {
+    background-color: #3b82f6; /* bg-blue-600 */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+    padding: 1rem 1.5rem; /* py-4 px-6 */
+    display: flex; /* flex */
+    flex-direction: column; /* flex-col */
+    align-items: center; /* items-center */
+    justify-content: space-between; /* justify-between */
+    border-bottom-left-radius: 0.5rem; /* rounded-b-lg */
+    border-bottom-right-radius: 0.5rem; /* rounded-b-lg */
+    width: 100%;
 }
 
 /* Responsive stiler for header på små skjermer (sm) */
 @media (min-width: 640px) {
-    #mainHeader {
-        flex-direction: row; /* tilsvarer sm:flex-row */
+    .main-header {
+        flex-direction: row; /* sm:flex-row */
     }
 }
 
 /* Responsive stiler for header på medium skjermer (md) */
 @media (min-width: 768px) {
-    #mainHeader {
-        padding-left: 2rem; /* tilsvarer md:px-8 */
-        padding-right: 2rem; /* tilsvarer md:px-8 */
+    .main-header {
+        padding-left: 2rem; /* md:px-8 */
+        padding-right: 2rem; /* md:px-8 */
     }
 }
 
 /* Responsive stiler for header på store skjermer (lg) */
 @media (min-width: 1024px) {
-    #mainHeader {
-        padding-left: 3rem; /* tilsvarer lg:px-12 */
-        padding-right: 3rem; /* tilsvarer lg:px-12 */
+    .main-header {
+        padding-left: 3rem; /* lg:px-12 */
+        padding-right: 3rem; /* lg:px-12 */
     }
 }
 
 /* Stiler for logo-bildet inni headeren */
-#mainHeader img {
-    height: 6rem; /* tilsvarer h-24 */
-    width: 6rem; /* tilsvarer w-24 */
-    border-radius: 0.5rem; /* tilsvarer rounded-lg */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* tilsvarer shadow-md */
-    margin-bottom: 1rem; /* tilsvarer mb-4 */
+.main-header .logo {
+    height: 6rem; /* h-24 */
+    width: 6rem; /* w-24 */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+    margin-bottom: 1rem; /* mb-4 */
 }
 
 /* Responsive stiler for logo på små skjermer (sm) */
 @media (min-width: 640px) {
-    #mainHeader img {
-        margin-bottom: 0; /* tilsvarer sm:mb-0 */
-        margin-right: 1.5rem; /* tilsvarer sm:mr-6 */
+    .main-header .logo {
+        margin-bottom: 0; /* sm:mb-0 */
+        margin-right: 1.5rem; /* sm:mr-6 */
     }
 }
 
 /* Stiler for tittelteksten inni headeren */
-#mainHeader h1 {
-    font-size: 1.875rem; /* tilsvarer text-3xl */
-    line-height: 2.25rem; /* tilsvarer text-3xl */
-    font-weight: 700; /* tilsvarer font-bold */
-    text-align: center; /* tilsvarer text-center */
-    color: white; /* tilsvarer text-blue-700 */
-    margin-bottom: 1rem; /* tilsvarer mb-4 */
+.main-header h1 {
+    font-size: 1.5rem; /* text-2xl */
+    line-height: 2rem;
+    font-weight: 700; /* font-bold */
+    text-align: center; /* text-center */
+    color: #ffffff; /* text-white */
+    margin-bottom: 1rem; /* mb-4 */
+}
+
+/* Responsive stiler for tittel på små skjermer (sm) */
+@media (min-width: 640px) {
+    .main-header h1 {
+        font-size: 1.875rem; /* sm:text-3xl */
+        line-height: 2.25rem;
+    }
 }
 
 /* Responsive stiler for tittel på store skjermer (lg) */
 @media (min-width: 1024px) {
-    #mainHeader h1 {
-        text-align: center; /* tilsvarer lg:text-left */
+    .main-header h1 {
+        text-align: center; /* lg:text-center */
     }
 }
 
 /* --- Navigasjonsstiler --- */
-#mainHeader nav {
-    width: 100%; /* tilsvarer w-full */
+.main-header nav {
+    width: 100%; /* w-full */
 }
 
 /* Responsive stiler for navigasjon på små skjermer (sm) */
 @media (min-width: 640px) {
-    #mainHeader nav {
-        width: auto; /* tilsvarer sm:w-auto */
+    .main-header nav {
+        width: auto; /* sm:w-auto */
     }
 }
 
-#mainHeader nav ul {
-    display: flex; /* tilsvarer flex */
-    flex-wrap: wrap; /* tilsvarer flex-wrap */
-    justify-content: center; /* tilsvarer justify-center */
-    list-style: none; /* Fjerner standard punktmerker */
-    padding: 0; /* Fjerner standard padding */
-    margin: 0; /* Fjerner standard margin */
-    gap: 1rem; /* tilsvarer space-x-4 (horisontal avstand) */
+.main-header nav ul {
+    display: flex; /* flex */
+    flex-wrap: wrap; /* flex-wrap */
+    justify-content: center; /* justify-center */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 1rem; /* gap-4 */
 }
 
 /* Responsive stiler for navigasjonsliste på små skjermer (sm) */
 @media (min-width: 640px) {
-    #mainHeader nav ul {
-        justify-content: left; /* tilsvarer sm:justify-end */
-        gap: 1.5rem; /* tilsvarer sm:space-x-6 */
+    .main-header nav ul {
+        justify-content: flex-end; /* sm:justify-end */
+        gap: 1.5rem; /* sm:gap-6 */
     }
 }
 
 /* Stiler for navigasjonslenker */
-#mainHeader nav ul li a {
-    color: #ffffff; /* tilsvarer text-blue-700 */
-    font-weight: 500; /* tilsvarer font-medium */
-    transition-property: color, background-color; /* tilsvarer transition */
-    transition-duration: 300ms; /* tilsvarer duration-300 */
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* tilsvarer ease-in-out */
-    padding: 0.5rem 0.75rem; /* tilsvarer px-3 py-2 */
-    border-radius: 0.375rem; /* tilsvarer rounded-md */
-    text-decoration: none; /* Fjerner understreking */
-    display: block; /* Gjør hele padding-området klikkbart */
+.main-header nav ul li a {
+    color: #ffffff; /* text-white */
+    font-weight: 500; /* font-medium */
+    transition: color 300ms ease-in-out, background-color 300ms ease-in-out; /* transition */
+    padding: 0.5rem 0.75rem; /* px-3 py-2 */
+    border-radius: 0.375rem; /* rounded-md */
+    text-decoration: none;
+    display: block;
 }
 
 /* Hover-stiler for navigasjonslenker */
-#mainHeader nav ul li a:hover {
-    color: #ffffff; /* tilsvarer hover:text-blue-900 */
-    background-color: #2d2dff; /* tilsvarer hover:bg-blue-100 */
+.main-header nav ul li a:hover {
+    color: #ffffff; /* hover:text-white */
+    background-color: #2d2dff; /* hover:bg-blue-700 */
 }
 
 /* --- Hovedinnholdsstiler (main) --- */
-main {
-    flex-grow: 1; /* tilsvarer flex-grow */
-    width: 100%; /* For å sikre at container mx-auto fungerer */
-    max-width: 1280px; /* Standard for Tailwind's container på store skjermer */
-    margin-left: auto; /* tilsvarer mx-auto */
-    margin-right: auto; /* tilsvarer mx-auto */
-    padding: 1.5rem; /* tilsvarer p-6 */
+.main-content {
+    flex-grow: 1; /* flex-grow */
+    width: 100%;
+    max-width: 1280px; /* max-w-7xl */
+    margin-left: auto;
+    margin-right: auto; /* mx-auto */
+    padding: 1.5rem; /* p-6 */
 }
 
 /* Responsive stiler for main på medium skjermer (md) */
 @media (min-width: 768px) {
-    main {
-        padding: 2rem; /* tilsvarer md:p-8 */
+    .main-content {
+        padding: 2rem; /* md:p-8 */
     }
 }
 
 /* Responsive stiler for main på store skjermer (lg) */
 @media (min-width: 1024px) {
-    main {
-        padding: 3rem; /* tilsvarer lg:p-12 */
+    .main-content {
+        padding: 3rem; /* lg:p-12 */
     }
 }
 
-/* --- Velkomstseksjon stiler (.welcome-section) --- */
+/* --- Velkomstseksjon stiler --- */
 .welcome-section {
-    background-color: #ffffff; /* tilsvarer bg-white */
-    padding: 2rem; /* tilsvarer p-8 */
-    border-radius: 0.5rem; /* tilsvarer rounded-lg */
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* tilsvarer shadow-xl */
-    text-align: center; /* tilsvarer text-center */
+    background-color: #ffffff; /* bg-white */
+    padding: 2rem; /* p-8 */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+    text-align: center; /* text-center */
 }
 
 /* Stiler for h2-tittelen i velkomstseksjonen */
 .welcome-section h2 {
-    font-size: 2.25rem; /* tilsvarer text-4xl */
-    line-height: 2.5rem; /* tilsvarer text-4xl */
-    font-weight: 800; /* tilsvarer font-extrabold */
-    color: #1d4ed8; /* tilsvarer text-blue-700 */
-    margin-bottom: 1.5rem; /* tilsvarer mb-6 */
+    font-size: 1.875rem; /* text-3xl */
+    line-height: 2.25rem;
+    font-weight: 800; /* font-extrabold */
+    color: #1d4ed8; /* text-blue-700 */
+    margin-bottom: 1.5rem; /* mb-6 */
+}
+
+/* Responsive stiler for h2 på små skjermer (sm) */
+@media (min-width: 640px) {
+    .welcome-section h2 {
+        font-size: 2.25rem; /* sm:text-4xl */
+        line-height: 2.5rem;
+    }
 }
 
 /* Stiler for paragrafen i velkomstseksjonen */
 .welcome-section p {
-    font-size: 1.125rem; /* tilsvarer text-lg */
-    line-height: 1.75rem; /* tilsvarer leading-relaxed */
-    color: #374151; /* tilsvarer text-gray-700 */
-    margin-bottom: 2rem; /* tilsvarer mb-8 */
+    font-size: 1.125rem; /* text-lg */
+    line-height: 1.75rem; /* leading-relaxed */
+    color: #374151; /* text-gray-700 */
+    margin-bottom: 2rem; /* mb-8 */
 }
 
-/* --- Knappestil for "Bruk Mathjelperen" (.button) --- */
-.button {
-    display: inline-block; /* Gjør lenken til et blokk-lignende element for padding */
-    background-color: #2563eb; /* tilsvarer bg-blue-600 */
-    color: #ffffff; /* tilsvarer text-white */
-    font-weight: 700; /* tilsvarer font-bold */
-    padding: 0.75rem 2rem; /* tilsvarer py-3 px-8 */
-    border-radius: 9999px; /* tilsvarer rounded-full */
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* tilsvarer shadow-lg */
-    transform: scale(1); /* tilsvarer transform (initial state for transition) */
-    transition-property: background-color, transform; /* tilsvarer transition */
-    transition-duration: 300ms; /* tilsvarer duration-300 */
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* tilsvarer ease-in-out */
-    border: none; /* Fjerner standard knappekant */
-    cursor: pointer; /* Indikerer klikkbar */
-    text-decoration: none; /* Fjerner understrek for lenker */
+/* --- Knappestil for "Bruk Mathjelperen" --- */
+.main-button {
+    display: inline-block;
+    background-color: #2563eb; /* bg-blue-600 */
+    color: #ffffff; /* text-white */
+    font-weight: 700; /* font-bold */
+    padding: 0.75rem 2rem; /* py-3 px-8 */
+    border-radius: 9999px; /* rounded-full */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+    transform: scale(1);
+    transition: background-color 300ms ease-in-out, transform 300ms ease-in-out;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 /* Hover-stiler for knappen */
-.button:hover {
-    background-color: #1e40af; /* tilsvarer hover:bg-blue-700 */
-    transform: scale(1.05); /* tilsvarer hover:scale-105 */
+.main-button:hover {
+    background-color: #1e40af; /* hover:bg-blue-700 */
+    transform: scale(1.05); /* hover:scale-105 */
 }
 
-/* --- Funksjonskort seksjon stiler (.feature-cards-section) --- */
+/* --- Funksjonskort seksjon stiler --- */
 .feature-cards-section {
-    margin-top: 3rem; /* tilsvarer mt-12 */
-    display: grid; /* tilsvarer grid */
-    grid-template-columns: repeat(1, minmax(0, 1fr)); /* tilsvarer grid-cols-1 */
-    gap: 2rem; /* tilsvarer gap-8 */
+    margin-top: 3rem; /* mt-12 */
+    display: grid; /* grid */
+    grid-template-columns: repeat(1, minmax(0, 1fr)); /* grid-cols-1 */
+    gap: 2rem; /* gap-8 */
 }
 
 /* Responsive stiler for feature-kort seksjonen på medium skjermer (md) */
 @media (min-width: 768px) {
     .feature-cards-section {
-        grid-template-columns: repeat(2, minmax(0, 1fr)); /* tilsvarer md:grid-cols-2 */
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 */
     }
 }
 
 /* Responsive stiler for feature-kort seksjonen på store skjermer (lg) */
 @media (min-width: 1024px) {
     .feature-cards-section {
-        grid-template-columns: repeat(3, minmax(0, 1fr)); /* tilsvarer lg:grid-cols-3 */
+        grid-template-columns: repeat(3, minmax(0, 1fr)); /* lg:grid-cols-3 */
     }
 }
 
-/* Stiler for individuelle feature-kort (.feature-card) */
+/* Stiler for individuelle feature-kort */
 .feature-card {
-    background-color: #ffffff; /* tilsvarer bg-white */
-    padding: 1.5rem; /* tilsvarer p-6 */
-    border-radius: 0.5rem; /* tilsvarer rounded-lg */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* tilsvarer shadow-md */
-    transition-property: box-shadow, transform; /* Legg til transform for hover-effekt */
-    transition-duration: 300ms; /* tilsvarer duration-300 */
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* tilsvarer ease-in-out */
-    text-align: center; /* Midtstill tekst i kortene */
+    background-color: #ffffff; /* bg-white */
+    padding: 1.5rem; /* p-6 */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+    transition: box-shadow 300ms ease-in-out, transform 300ms ease-in-out;
+    text-align: center;
 }
 
 /* Hover-stiler for feature-kort */
 .feature-card:hover {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* tilsvarer hover:shadow-xl */
-    transform: translateY(-5px); /* Liten løft-effekt ved hover */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* hover:shadow-xl */
+    transform: translateY(-5px); /* hover:-translate-y-1 */
 }
 
 /* Stiler for h3-tittelen i feature-kortene */
 .feature-card h3 {
-    font-size: 1.5rem; /* tilsvarer text-2xl */
-    line-height: 2rem; /* tilsvarer text-2xl */
-    font-weight: 600; /* tilsvarer font-semibold */
-    color: #2563eb; /* tilsvarer text-blue-600 */
-    margin-bottom: 1rem; /* tilsvarer mb-4 */
+    font-size: 1.5rem; /* text-2xl */
+    line-height: 2rem;
+    font-weight: 600; /* font-semibold */
+    color: #2563eb; /* text-blue-600 */
+    margin-bottom: 1rem; /* mb-4 */
 }
 
 /* Stiler for paragrafen i feature-kortene */
 .feature-card p {
-    color: #4b5563; /* tilsvarer text-gray-600 */
+    color: #4b5563; /* text-gray-600 */
 }
 
-/* --- Bunntekst stiler (footer) --- */
-footer {
-    background-color: #1e3a8a; /* tilsvarer bg-blue-800 */
-    color: #ffffff; /* tilsvarer text-white */
-    padding: 1.5rem; /* tilsvarer py-6 px-6 */
-    margin-top: 3rem; /* tilsvarer mt-12 */
-    border-top-left-radius: 0.5rem; /* tilsvarer rounded-t-lg */
-    border-top-right-radius: 0.5rem; /* tilsvarer rounded-t-lg */
-    text-align: center; /* Midtstill all tekst i footer */
+/* --- Bunntekst stiler --- */
+.main-footer {
+    background-color: #1e3a8a; /* bg-blue-900 */
+    color: #ffffff; /* text-white */
+    padding: 1.5rem; /* py-6 px-6 */
+    margin-top: 3rem; /* mt-12 */
+    border-top-left-radius: 0.5rem; /* rounded-t-lg */
+    border-top-right-radius: 0.5rem; /* rounded-t-lg */
+    text-align: center;
 }
 
 /* Responsive stiler for footer på medium skjermer (md) */
 @media (min-width: 768px) {
-    footer {
-        padding-left: 2rem; /* tilsvarer md:px-8 */
-        padding-right: 2rem; /* tilsvarer md:px-8 */
+    .main-footer {
+        padding-left: 2rem; /* md:px-8 */
+        padding-right: 2rem; /* md:px-8 */
     }
 }
 
 /* Responsive stiler for footer på store skjermer (lg) */
 @media (min-width: 1024px) {
-    footer {
-        padding-left: 3rem; /* tilsvarer lg:px-12 */
-        padding-right: 3rem; /* tilsvarer lg:px-12 */
+    .main-footer {
+        padding-left: 3rem; /* lg:px-12 */
+        padding-right: 3rem; /* lg:px-12 */
     }
 }
 
 /* Stiler for lenkene i footer */
 .footer-links {
-    display: flex; /* tilsvarer flex */
-    justify-content: center; /* tilsvarer justify-center */
-    gap: 1rem; /* tilsvarer space-x-4 */
-    margin-top: 0.75rem; /* tilsvarer mt-3 */
-    flex-wrap: wrap; /* Tillat innpakning på små skjermer */
+    display: flex; /* flex */
+    justify-content: center; /* justify-center */
+    gap: 1rem; /* gap-4 */
+    margin-top: 0.75rem; /* mt-3 */
+    flex-wrap: wrap;
 }
 
 .footer-links a {
-    color: #ffffff; /* tilsvarer text-white */
-    transition-property: color; /* tilsvarer transition */
-    transition-duration: 300ms; /* tilsvarer duration-300 */
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* tilsvarer ease-in-out */
-    text-decoration: none; /* Fjerner understreking */
+    color: #ffffff; /* text-white */
+    transition: color 300ms ease-in-out;
+    text-decoration: none;
 }
 
 /* Hover-stiler for lenkene i footer */
 .footer-links a:hover {
-    color: #bfdbfe; /* tilsvarer hover:text-blue-200 */
+    color: #bfdbfe; /* hover:text-blue-200 */
 }
 
 /* Stiler for skillelinjen (span) i footer */
 .footer-links span {
-    color: #93c5fd; /* tilsvarer text-blue-300 */
+    color: #93c5fd; /* text-blue-300 */
 }
 
 /* --- Mathjelper-relaterte stiler (for eksempel for mathjelper/ index.html) --- */
@@ -434,7 +442,7 @@ footer {
 }
 
 .loading-spinner {
-    border: 8px solid #f3f3f3;        
+    border: 8px solid #f3f3f3;
     border-top: 8px solid #3498db;
     border-radius: 50%;
     width: 60px;
@@ -458,8 +466,8 @@ footer {
     justify-content: center;
     align-items: center;
     z-index: 1001;
-    opacity: 0; /* Start hidden */
-    visibility: hidden; /* Start hidden */
+    opacity: 0;
+    visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
@@ -476,12 +484,12 @@ footer {
     text-align: center;
     max-width: 90%;
     width: 400px;
-    transform: translateY(-20px); /* Start slightly above */
+    transform: translateY(-20px);
     transition: transform 0.3s ease;
 }
 
 .modal-overlay.show .modal-content {
-    transform: translateY(0); /* Slide into place */
+    transform: translateY(0);
 }
 
 .modal-content h3 {
@@ -508,3 +516,25 @@ footer {
 .modal-content button:hover {
     background-color: #1d4ed8; /* hover:bg-blue-700 */
 }
+
+
+        nav ul li a {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.25rem; /* Space for underline effect */
+            transition: color 0.3s ease;
+        }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: #a7f3d0; /* Light blue/green for underline */
+            left: 50%;
+            bottom: 0;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        nav ul li a:hover::after {
+            width: 100%;
+            left: 0;
+        }

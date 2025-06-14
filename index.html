@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DeGodesMat.EB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Google tag (gtag.js) -->
@@ -17,48 +18,47 @@
 </script>
 </head>
 <body>
-    <header id="mainHeader">
-        <img src="./img/logo.png" alt="De Godes Mat Logo">
-        
-        <h1>Velkommen til DeGodesMat!</h1>
-        
-        <nav>
-            <ul>
-                <li><a href="./">Home</a></li>
-                <li><a href="https://github.com/DenGodeMaten">About</a></li>
-                <li><a href="https://github.com/AraGold7#:~:text=and%20powershell%20scripts-,%F0%9F%93%AB%20How%20to%20reach%20me%3A,-open%20a%20ticket">Contact</a></li>
+    <header id="mainHeader" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-4 shadow-md flex flex-col items-center justify-center rounded-b-xl mb-6 lg:flex-row lg:justify-start lg:px-8 lg:py-6">
+        <img src="./img/logo.png" alt="De Godes Mat Logo" class="h-24 w-24 rounded-lg shadow-md mb-4 lg:mb-0 lg:mr-6">
+        <h1 class="text-3xl font-bold text-center lg:text-left flex-grow">Velkommen til DeGodesMat!</h1>
+        <nav class="mt-4 lg:mt-0 lg:ml-auto">
+            <ul class="flex space-x-6">
+                <li><a href="#" class="hover:text-blue-200">Home</a></li>
+                <li><a href="https://github.com/DenGodeMaten" target="_blank" class="hover:text-blue-200">About</a></li>
+                <li><a href="https://github.com/AraGold7#:~:text=and%20powershell%20scripts-,%F0%9F%93%AB%20How%20to%20reach%20me%3A,-open%20a%20ticket" target="_blank" class="hover:text-blue-200">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
+
+    <main class="main-content">
         <section class="welcome-section">
             <h2>Mathjelper av velging av oppskrifter</h2>
             <p>
                 Vi er glade for å ha deg her. 
                 Vår Mathjelper er designet for å hjelpe deg med å velge de beste oppskriftene basert på dine preferanser og ingredienser du har tilgjengelig.
             </p>
-            <a href="./mathjelper/" class="button"> 
+            <a href="./mathjelper/" class="main-button"> 
                 Bruk Mathjelperen
             </a>
         </section>
 
         <section class="feature-cards-section">
-            <!-- del 1 -->
+            <!-- Funksjonskort 1 -->
             <div class="feature-card">
                 <h3>Funksjon En</h3>
                 <p>
                     Oppdag de fantastiske fordelene med vår første nøkkelfunksjon. Den er designet for å forenkle livet ditt.
                 </p>
             </div>
-            <!-- del 2 -->
+            <!-- Funksjonskort 2 -->
             <div class="feature-card">
                 <h3>Funksjon To</h3>
                 <p>
                     Utforsk de innovative aspektene ved vår andre funksjon, bygget for effektivitet og ytelse.
                 </p>
             </div>
-            <!-- del 3 -->
+            <!-- Funksjonskort 3 -->
             <div class="feature-card">
                 <h3>Funksjon Tre</h3>
                 <p>
@@ -68,7 +68,7 @@
         </section>
     </main>
 
-    <footer>
+    <footer class="main-footer">
         <div>
             <p>Vår Fantastiske Side.</p>
             <div class="footer-links">
